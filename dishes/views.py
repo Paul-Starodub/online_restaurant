@@ -5,4 +5,5 @@ from dishes.models import Dish
 
 
 class DishListView(generic.ListView):
-    class_name = Dish
+    model = Dish
+    template_name = "dishes/dishes_list.html"
