@@ -1,9 +1,13 @@
+from __future__ import annotations
+import os
+import uuid
+
 from django.conf import settings
 from django.db import models
 
 
 class DishType(models.Model):
-    name = models.CharField(max_length=63)
+    name = models.CharField(max_length=63, unique=True)
 
     class Meta:
         ordering = ["name"]
@@ -22,10 +26,21 @@ class Like(models.Model):
         unique_together = ["user", "item"]
 
 
+def dish_image_file_path(instance: Dish, filename: str) -> str:
+    _, extension = os.path.splitext(filename)
+
+    from django.utils.text import slugify
+
+    filename = f"{slugify(instance.name)}-{uuid.uuid4()}{extension}"
+
+    return os.path.join("uploads/dishes/", filename)
+
+
 class Dish(models.Model):
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250, unique=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=7, decimal_places=2)
+    image = models.ImageField(null=False, upload_to=dish_image_file_path)
     dish_type = models.ForeignKey(
         DishType, on_delete=models.CASCADE, related_name="dishes"
     )
