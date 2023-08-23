@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Dishes</h1>
+  {% if dish_list %}
+    <ul>
+      {% for dish in dish_list %}
+        <li>
+          <div><a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a></div>
+          <hr>
+          <div>Description: {{ dish.description }}</div>
+          <hr>
+          <div>Price: {{ dish.price }}</div>
+          <hr>
+          <div>Type of dish: {{ dish.dish_type }}</div>
+          <p></p>
+          <br>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}
