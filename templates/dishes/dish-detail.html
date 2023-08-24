@@ -16,4 +16,18 @@
     <hr>
     <strong>Likes:</strong>
     {{ dish.likes.count }}
-{% endblock %}
+
+    {% if user.is_authenticated %}
+      {% if user in dish.likes.all %}
+          <form method="get" action="{% url 'cuisine:update_like_dish' pk=dish.pk %}">
+              {% csrf_token %}
+              <button type="submit">Unlike</button>
+          </form>
+      {% else %}
+          <form method="get" action="{% url 'cuisine:update_like_dish' pk=dish.pk %}">
+              {% csrf_token %}
+              <button type="submit">Like</button>
+          </form>
+      {% endif %}
+    {% endif %}
+  {% endblock%}
