@@ -9,8 +9,8 @@ from users.models import User
 
 
 class DishListView(LoginRequiredMixin, generic.ListView):
-    model = Dish
     template_name = "dishes/dishes_list.html"
+    queryset = Dish.objects.select_related("dish_type")
 
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
