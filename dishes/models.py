@@ -34,8 +34,11 @@ class Dish(models.Model):
         DishType, on_delete=models.CASCADE, related_name="dishes"
     )
     likes = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, related_name="dishes"
+        settings.AUTH_USER_MODEL, related_name="dishes", blank=True
     )
+
+    class Meta:
+        verbose_name_plural = "dishes"
 
     def __str__(self) -> str:
         return self.name
