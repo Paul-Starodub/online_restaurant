@@ -4,6 +4,7 @@ import uuid
 
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 
 
 class DishType(models.Model):
@@ -47,3 +48,6 @@ class Dish(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self) -> str:
+        return reverse("cuisine:dish-detail", kwargs={"pk": self.pk})
