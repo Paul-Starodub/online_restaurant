@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 >Name: {{ dish.name }}</h1>
+    <strong>Description:</strong>
+    {{ dish.description }}
+    <hr>
+    <strong>Price:</strong>
+    {{ dish.price }}
+    <hr>
+    <strong>Image:</strong>
+    <img src="{{ dish.image.url|safe }}" alt="Image" height="400" width="400">
+    <hr>
+    <strong>Type:</strong>
+    {{ dish.dish_type }}
+    <hr>
+    <strong>Likes:</strong>
+    {{ dish.likes.count }}
+{% endblock %}
