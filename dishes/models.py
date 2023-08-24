@@ -4,6 +4,7 @@ import uuid
 
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 
 
 class DishType(models.Model):
@@ -16,19 +17,10 @@ class DishType(models.Model):
         return self.name
 
 
-class Like(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE
-    )
-    item = models.ForeignKey("Dish", on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ["user", "item"]
-
-
 def dish_image_file_path(instance: Dish, filename: str) -> str:
     _, extension = os.path.splitext(filename)
     from django.utils.text import slugify
+
     filename = f"{slugify(instance.name)}-{uuid.uuid4()}{extension}"
     return os.path.join("uploads/dishes/", filename)
 
@@ -42,8 +34,11 @@ class Dish(models.Model):
         DishType, on_delete=models.CASCADE, related_name="dishes"
     )
     likes = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, through=Like, related_name="dishes"
+        settings.AUTH_USER_MODEL, related_name="dishes"
     )
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self) -> str:
+        return reverse("cuisine:dish-detail", kwargs={"pk": self.pk})
