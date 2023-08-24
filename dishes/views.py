@@ -8,6 +8,11 @@ class DishListView(generic.ListView):
     template_name = "dishes/dishes_list.html"
 
 
+class DishDetailView(generic.DetailView):
+    model = Dish
+    template_name = "dishes/dish-detail.html"
+
+
 class DishTypeListView(generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
