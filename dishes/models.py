@@ -28,11 +28,8 @@ class Like(models.Model):
 
 def dish_image_file_path(instance: Dish, filename: str) -> str:
     _, extension = os.path.splitext(filename)
-
     from django.utils.text import slugify
-
     filename = f"{slugify(instance.name)}-{uuid.uuid4()}{extension}"
-
     return os.path.join("uploads/dishes/", filename)
 
 
