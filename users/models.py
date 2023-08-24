@@ -5,7 +5,7 @@ from django.utils.translation import gettext as _
 
 class User(AbstractUser):
     email = models.EmailField(_("email address"), unique=True)
- 
+
     class Meta:
         ordering = ["username"]
 
