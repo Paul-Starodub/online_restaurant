@@ -21,7 +21,7 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
-    template_name = "dishes/dish_types_list.html"
+    template_name = "dishes/dish_types-list.html"
 
 
 class UpdateLikeView(generic.DetailView):
