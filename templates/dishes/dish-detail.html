@@ -19,24 +19,30 @@
 
     {% if user.is_authenticated %}
       {% if user in dish.likes.all %}
-          <form method="get" action="{% url 'cuisine:update_like_dish' pk=dish.pk %}">
-              {% csrf_token %}
-              <button type="submit">Unlike</button>
-          </form>
+        <form method="get" action="{% url 'cuisine:update_like_dish' pk=dish.pk %}">
+          {% csrf_token %}
+          <button type="submit">Unlike</button>
+        </form>
       {% else %}
-          <form method="get" action="{% url 'cuisine:update_like_dish' pk=dish.pk %}">
-              {% csrf_token %}
-              <button type="submit">Like</button>
-          </form>
+        <form method="get" action="{% url 'cuisine:update_like_dish' pk=dish.pk %}">
+          {% csrf_token %}
+          <button type="submit">Like</button>
+        </form>
       {% endif %}
     {% endif %}
     {% if user.is_staff %}
       <hr>
+      <a
+        href="{% url 'cuisine:dish-update' pk=dish.pk %}"
+        class="btn btn-dark link-to-page text-white"
+      >
+        Update dish
+      </a>
     <a
-    href="{% url 'cuisine:dish-update' pk=dish.pk %}"
-    class="btn btn-dark link-to-page text-white"
-  >
-    Update dish
-  </a>
+      style="float: right"
+      class="btn btn-secondary text-white"
+      href="{% url 'cuisine:dish-delete' pk=dish.pk %}">Delete
+    </a>
+    <hr>
   {% endif %}
-  {% endblock%}
+{% endblock%}

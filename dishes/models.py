@@ -3,6 +3,7 @@ import os
 import uuid
 
 from django.conf import settings
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
 
@@ -30,7 +31,11 @@ def dish_image_file_path(instance: Dish, filename: str) -> str:
 class Dish(models.Model):
     name = models.CharField(max_length=250, unique=True)
     description = models.TextField()
-    price = models.DecimalField(max_digits=7, decimal_places=2)
+    price = models.DecimalField(
+        max_digits=7,
+        decimal_places=2,
+        validators=[MinValueValidator(limit_value=0)],
+    )
     image = models.ImageField(null=False, upload_to=dish_image_file_path)
     dish_type = models.ForeignKey(
         DishType, on_delete=models.CASCADE, related_name="dishes"
