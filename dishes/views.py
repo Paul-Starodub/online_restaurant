@@ -77,11 +77,57 @@ class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("cuisine:dish-list")
 
 
+@method_decorator(
+    user_passes_test(is_admin),
+    name="dispatch",
+)
+class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Dish
+    success_url = reverse_lazy("cuisine:dish-list")
+
+
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
     template_name = "dishes/dish_types-list.html"
     paginate_by = 5
+
+
+class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
+    model = DishType
+    template_name = "dishes/dish_type-detail.html"
+
+
+@method_decorator(
+    user_passes_test(is_admin),
+    name="dispatch",
+)
+class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = DishType
+    fields = "__all__"
+    template_name = "dishes/dish_type_form.html"
+    success_url = reverse_lazy("cuisine:dish_type-list")
+
+
+@method_decorator(
+    user_passes_test(is_admin),
+    name="dispatch",
+)
+class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = DishType
+    fields = "__all__"
+    template_name = "dishes/dish_type_form.html"
+    success_url = reverse_lazy("cuisine:dish_type-list")
+
+
+@method_decorator(
+    user_passes_test(is_admin),
+    name="dispatch",
+)
+class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = DishType
+    template_name = "dishes/dish_type_confirm_delete.html"
+    success_url = reverse_lazy("cuisine:dish_type-list")
 
 
 class UpdateLikeView(generic.DetailView):
