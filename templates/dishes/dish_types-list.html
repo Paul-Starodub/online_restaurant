@@ -2,13 +2,30 @@
 
 {% block content %}
   <h1>Types of dishes</h1>
+  <hr>
+  {% if user.is_staff %}
+    <a
+      style="float: right"
+      class="btn btn-secondary text-white"
+      href="{% url 'cuisine:dish_type-create' %}">Create
+    </a>
+    <hr>
+  {% endif %}
   {% if dish_type_list %}
     <ul>
       {% for type in dish_type_list %}
-        <li>
-          <div>{{ type.name|capfirst }}</div>
-          <hr>
-        </li>
+        {% if user.is_staff %}
+          <li>
+            <a href="{% url 'cuisine:dish_type-detail' pk=type.pk %}">
+              {{ type.name|capfirst }}
+            </a>
+            <hr>
+          </li>
+        {% else %}
+          <li>
+            Name: {{ type.name|capfirst }}
+          </li>
+        {% endif %}
       {% endfor %}
     </ul>
   {% endif %}
