@@ -3,6 +3,10 @@
 {% block content %}
   <h1>Dishes</h1>
   {% if dish_list %}
+    <form action="" method="get" class="form-inline">
+      {{ search_form }}
+      <input class="btn btn-outline-light" type="submit" value="🔎">
+    </form>
     <ul>
       {% for dish in dish_list %}
         <li>
