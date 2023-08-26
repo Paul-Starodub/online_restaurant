@@ -13,6 +13,16 @@ class DishListView(LoginRequiredMixin, generic.ListView):
     queryset = Dish.objects.select_related("dish_type")
     paginate_by = 5
 
+    def get_context_data(self, **kwargs: dict) -> dict:
+        context = super().get_context_data(**kwargs)
+
+        self.request.session["num_visits"] = (
+            self.request.session.get("num_visits", 0) + 1
+        )
+        context["num_visits"] = self.request.session.get("num_visits", 1)
+
+        return context
+
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
