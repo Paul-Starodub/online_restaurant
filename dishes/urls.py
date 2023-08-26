@@ -4,6 +4,8 @@ from dishes.views import (
     DishListView,
     DishTypeListView,
     DishDetailView,
+    DishCreateView,
+    DishUpdateView,
     UpdateLikeView,
 )
 
@@ -15,6 +17,10 @@ urlpatterns = [
         "dishes/<int:pk>/like/",
         UpdateLikeView.as_view(),
         name="update_like_dish",
+    ),
+    path("dishes/create/", DishCreateView.as_view(), name="dish-create"),
+    path(
+        "dishes/<int:pk>/update/", DishUpdateView.as_view(), name="dish-update"
     ),
 ]
 

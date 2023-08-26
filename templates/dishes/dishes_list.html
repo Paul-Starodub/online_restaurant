@@ -2,11 +2,24 @@
 
 {% block content %}
   <h1>Dishes</h1>
+  <hr>
+  <form action="" method="get" class="form-inline">
+    {{ search_form }}
+    <input class="btn btn-outline-light" type="submit" value="🔎">
+  </form>
+  <br>
+    <h2>
+    Position List
+    </h2>
+  {% if user.is_staff %}
+    <a
+        style="float: right"
+        class="btn btn-secondary text-white"
+        href="{% url 'cuisine:dish-create' %}">Create
+    </a>
+    <hr>
+  {% endif %}
   {% if dish_list %}
-    <form action="" method="get" class="form-inline">
-      {{ search_form }}
-      <input class="btn btn-outline-light" type="submit" value="🔎">
-    </form>
     <ul>
       {% for dish in dish_list %}
         <li>

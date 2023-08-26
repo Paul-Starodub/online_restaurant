@@ -9,6 +9,13 @@ from dishes.forms import NameSearchForm
 from dishes.models import Dish, DishType
 from users.models import User
 
+from django.contrib.auth.decorators import user_passes_test
+from django.utils.decorators import method_decorator
+
+
+def is_admin(user) -> bool:
+    return user.is_authenticated and user.is_superuser
+
 
 class DishListView(LoginRequiredMixin, generic.ListView):
     template_name = "dishes/dishes_list.html"
@@ -24,11 +31,8 @@ class DishListView(LoginRequiredMixin, generic.ListView):
         context["num_visits"] = self.request.session.get("num_visits", 1)
 
         name = self.request.GET.get("name", "")
-        context["search_form"] = NameSearchForm(
-            initial={
-                "name": name
-            }
-        )
+        context["search_form"] = NameSearchForm(initial={"name": name})
+        context["user"] = self.request.user
 
         return context
 
@@ -37,9 +41,7 @@ class DishListView(LoginRequiredMixin, generic.ListView):
         queryset = Dish.objects.select_related("dish_type")
 
         if form.is_valid():
-            return queryset.filter(
-                name__icontains=form.cleaned_data["name"]
-            )
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
 
         return queryset
 
@@ -47,6 +49,32 @@ class DishListView(LoginRequiredMixin, generic.ListView):
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
     template_name = "dishes/dish-detail.html"
+
+    def get_context_data(self, **kwargs: dict) -> dict:
+        context = super().get_context_data(**kwargs)
+        context["user"] = self.request.user
+
+        return context
+
+
+@method_decorator(
+    user_passes_test(is_admin),
+    name="dispatch",
+)
+class DishCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Dish
+    fields = ("name", "description", "price", "image", "dish_type")
+    success_url = reverse_lazy("cuisine:dish-list")
+
+
+@method_decorator(
+    user_passes_test(is_admin),
+    name="dispatch",
+)
+class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Dish
+    fields = ("name", "description", "price", "image", "dish_type")
+    success_url = reverse_lazy("cuisine:dish-list")
 
 
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
