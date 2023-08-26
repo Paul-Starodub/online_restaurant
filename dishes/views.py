@@ -11,6 +11,7 @@ from users.models import User
 class DishListView(LoginRequiredMixin, generic.ListView):
     template_name = "dishes/dishes_list.html"
     queryset = Dish.objects.select_related("dish_type")
+    paginate_by = 5
 
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
@@ -22,6 +23,7 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
     template_name = "dishes/dish_types-list.html"
+    paginate_by = 5
 
 
 class UpdateLikeView(generic.DetailView):
