@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 >Name: {{ dishtype.name }}</h1>
+  {% if user.is_staff %}
+    <hr>
+    <a
+      href="{% url 'cuisine:dish_type-update' pk=dishtype.pk %}"
+      class="btn btn-dark link-to-page text-white"
+    >
+      Update type of dish
+    </a>
+    <a
+      style="float: right"
+      class="btn btn-secondary text-white"
+      href="{% url 'cuisine:dish_type-delete' pk=dishtype.pk %}">Delete
+    </a>
+    <hr>
+  {% endif %}
+{% endblock%}
