@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
-from dishes.forms import NameSearchForm
+from dishes.forms import NameSearchForm, DishCustomizeForm
 from dishes.models import Dish, DishType
 from users.models import User
 
@@ -63,7 +63,7 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 )
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
-    fields = ("name", "description", "price", "image", "dish_type")
+    form_class = DishCustomizeForm
     success_url = reverse_lazy("cuisine:dish-list")
 
 
@@ -73,7 +73,7 @@ class DishCreateView(LoginRequiredMixin, generic.CreateView):
 )
 class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
-    fields = ("name", "description", "price", "image", "dish_type")
+    form_class = DishCustomizeForm
     success_url = reverse_lazy("cuisine:dish-list")
 
 
