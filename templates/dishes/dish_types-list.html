@@ -6,7 +6,7 @@
     <ul>
       {% for type in dish_type_list %}
         <li>
-          <div><a href="{{ type.get_absolute_url }}">{{ type.name }}</a></div>
+          <div>{{ type.name|capfirst }}</div>
           <hr>
         </li>
       {% endfor %}
