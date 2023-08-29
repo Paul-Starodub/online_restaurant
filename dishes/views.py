@@ -14,7 +14,7 @@ from django.utils.decorators import method_decorator
 
 
 def is_admin(user) -> bool:
-    return user.is_authenticated and user.is_superuser
+    return user.is_authenticated and user.is_staff
 
 
 class DishListView(LoginRequiredMixin, generic.ListView):
