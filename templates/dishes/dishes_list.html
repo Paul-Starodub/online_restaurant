@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Dishes</h1>
+  <h1>Dishes:</h1>
   <hr>
   <form action="" method="get" class="form-inline">
     {{ search_form }}
     <input class="btn btn-outline-light" type="submit" value="🔎">
   </form>
   <br>
-    <h2>
-    Position List
-    </h2>
+{#    <h2>#}
+{#    Position List#}
+{#    </h2>#}
   {% if user.is_staff %}
     <a
         style="float: right"
@@ -36,7 +36,7 @@
       {% endfor %}
     </ul>
   {% else %}
-    <p>There no dishes yet</p>
+    <h2>There no dishes yet</h2>
     <br>
   {% endif %}
   <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}</p>
