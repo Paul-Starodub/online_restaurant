@@ -35,6 +35,9 @@
         </li>
       {% endfor %}
     </ul>
+  {% else %}
+    <p>There no dishes yet</p>
+    <br>
   {% endif %}
   <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}</p>
 {% endblock %}
