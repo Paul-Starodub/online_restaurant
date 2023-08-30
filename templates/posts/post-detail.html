@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Post</h1>
+  <hr>
+    <strong>Description:</strong>
+    {{ post.description }}
+    <hr>
+    <strong>Rating:</strong>
+    {{ post.rating }}
+    <hr>
+    <strong>Created:</strong>
+    {{ post.created_time }}
+    <hr>
+    <strong>Dish:</strong>
+    {{ post.dish }}
+    <hr>
+    <strong>User:</strong>
+    {{ post.user }}
+      <hr>
+      <a
+        style="float: right"
+        class="btn btn-secondary text-white"
+        href="{% url 'posts:comment-create' pk=post.pk %}">
+          Create comment
+      </a>
+      <br>
+    {% if post.commentaries.all %}
+      <hr>
+    <strong>Comments:</strong>
+      {% for comment in post.commentaries.all %}
+        <div>
+        <a
+        style="float: right"
+        class="btn btn-secondary text-white"
+        href="{% url 'posts:commentary-detail' pk=comment.pk %}">
+          {{ comment }}
+        </a>
+        </div>
+      {% endfor %}
+    {% else %}
+      There are not comments yet! You can add some one.
+    {% endif %}
+
+  {% if user == post.user %}
+    <hr>
+    <a
+      href="{% url 'posts:post-update' pk=post.pk %}"
+      class="btn btn-dark link-to-page text-white"
+    >
+      Update post
+    </a>
+    <a
+      style="float: right"
+      class="btn btn-secondary text-white"
+      href="{% url 'posts:post-delete' pk=post.pk %}">Delete post
+    </a>
+    <hr>
+  {% endif %}
+{% endblock%}
