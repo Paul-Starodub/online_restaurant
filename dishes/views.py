@@ -51,7 +51,6 @@ class DishListView(LoginRequiredMixin, generic.ListView):
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
-    template_name = "dishes/dish-detail.html"
     queryset = Dish.objects.prefetch_related(
         "posts__commentaries", "likes"
     ).select_related("dish_type")
@@ -86,13 +85,13 @@ class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
-    template_name = "dishes/dish_types-list.html"
+    template_name = "dishes/dish_types_list.html"
     paginate_by = 5
 
 
 class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = DishType
-    template_name = "dishes/dish_type-detail.html"
+    template_name = "dishes/dish_type_detail.html"
 
 
 @method_decorator(decorators, name="dispatch")
