@@ -21,8 +21,9 @@ class Post(models.Model):
     )
     user = models.ForeignKey(
         get_user_model(),
-        on_delete=models.DO_NOTHING,
+        on_delete=models.SET_NULL,
         related_name="posts",
+        null=True,
     )
 
     class Meta:
