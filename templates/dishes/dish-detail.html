@@ -13,7 +13,6 @@
     <hr>
     <strong>Type:</strong>
     {{ dish.dish_type }}
-    {% if dish.posts.all %}
     <hr>
       <a
         href="{% url 'posts:post-create'%}"
@@ -21,6 +20,7 @@
       >
         Create post
       </a>
+    {% if dish.posts.all %}
       <hr>
     <strong>Posts:</strong>
 
@@ -38,7 +38,6 @@
     <hr>
     <strong>Likes:</strong>
     {{ dish.likes.count }}
-
     {% if user.is_authenticated %}
       {% if user in dish.likes.all %}
         <form method="get" action="{% url 'cuisine:update_like_dish' pk=dish.pk %}">
