@@ -13,6 +13,28 @@
     <hr>
     <strong>Type:</strong>
     {{ dish.dish_type }}
+    {% if dish.posts.all %}
+    <hr>
+      <a
+        href="{% url 'posts:post-create'%}"
+        class="btn btn-dark text-white"
+      >
+        Create post
+      </a>
+      <hr>
+    <strong>Posts:</strong>
+
+      {% for post in dish.posts.all %}
+        <div>
+        <a
+        style="float: right"
+        class="btn btn-secondary text-white"
+        href="{% url 'posts:post-detail' pk=post.pk %}">
+          {{ post }}
+        </a>
+        </div>
+      {% endfor %}
+    {% endif %}
     <hr>
     <strong>Likes:</strong>
     {{ dish.likes.count }}

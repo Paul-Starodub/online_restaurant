@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Commentary</h1>
+  <hr>
+    <strong>User:</strong>
+    {{ comment.user }}
+    <hr>
+    <strong>Post:</strong>
+    {{ comment.post }}
+    <hr>
+    <strong>Created:</strong>
+    {{ comment.created_time }}
+    <hr>
+    <strong>Content:</strong>
+    {{ comment.content }}
+  {% if user == comment.user %}
+    <a
+      style="float: right"
+      class="btn btn-secondary text-white"
+      href="{% url 'posts:commentary-delete' pk=comment.pk %}">Delete comment
+    </a>
+    <hr>
+  {% endif %}
+{% endblock%}

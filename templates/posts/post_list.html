@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Posts</h1>
+  <hr>
+{#  {% if user.is_staff %}#}
+    <a
+      style="float: right"
+      class="btn btn-secondary text-white"
+      href="{% url 'posts:post-create' %}">Create
+    </a>
+    <hr>
+{#  {% endif %}#}
+  {% if post_list %}
+    <ul>
+      {% for post in post_list %}
+        Rating: {{ post.rating }}
+        Created time: {{ post.created_time }}
+        {% if post.user %}
+          User: {{ post.user.username }}
+        {% else %}
+          Unknown user
+        {% endif %}
+        Dish: {{ post.dish }}
+        <hr>
+{#        {% if user.is_staff %}#}
+{#          <li>#}
+{#            <a href="{% url 'cuisine:dish_type-detail' pk=type.pk %}">#}
+{#              {{ type.name|capfirst }}#}
+{#            </a>#}
+{#            <hr>#}
+{#          </li>#}
+{#        {% else %}#}
+{#          <li>#}
+{#            Name: {{ type.name|capfirst }}#}
+{#          </li>#}
+{#        {% endif %}#}
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

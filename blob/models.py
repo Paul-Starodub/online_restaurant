@@ -1,6 +1,8 @@
-from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
+
+from dishes.models import Dish
 
 
 class Post(models.Model):
@@ -14,12 +16,21 @@ class Post(models.Model):
     description = models.TextField()
     rating = models.IntegerField(choices=RATING_CHOICES)
     created_time = models.DateTimeField(auto_now_add=True)
+    dish = models.ForeignKey(
+        Dish, on_delete=models.CASCADE, related_name="posts"
+    )
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.SET_NULL,
+        related_name="posts",
+        null=True,
+    )
 
     class Meta:
-        ordering = ["-created_time"]
+        ordering = ["dish__name"]
 
     def __str__(self) -> str:
-        return self.description[:25]
+        return self.description[:7]
 
     def get_absolute_url(self) -> str:
         return reverse("blog:post-detail", kwargs={"pk": self.pk})
@@ -27,7 +38,7 @@ class Post(models.Model):
 
 class Commentary(models.Model):
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        get_user_model(),
         on_delete=models.CASCADE,
         related_name="commentaries",
     )

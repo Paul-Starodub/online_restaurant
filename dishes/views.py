@@ -14,7 +14,7 @@ from django.utils.decorators import method_decorator
 
 
 def is_admin(user) -> bool:
-    return user.is_authenticated and user.is_superuser
+    return user.is_authenticated and user.is_staff
 
 
 class DishListView(LoginRequiredMixin, generic.ListView):
@@ -49,6 +49,9 @@ class DishListView(LoginRequiredMixin, generic.ListView):
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
     template_name = "dishes/dish-detail.html"
+    queryset = Dish.objects.prefetch_related(
+        "posts__commentaries", "likes"
+    ).select_related("dish_type")
 
     def get_context_data(self, **kwargs: dict) -> dict:
         context = super().get_context_data(**kwargs)

@@ -2,12 +2,10 @@ from __future__ import annotations
 import os
 import uuid
 
-from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
-
-from blob.models import Post
 
 
 class DishType(models.Model):
@@ -41,9 +39,8 @@ class Dish(models.Model):
         DishType, on_delete=models.CASCADE, related_name="dishes"
     )
     likes = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, related_name="dishes", blank=True
+        get_user_model(), related_name="dishes", blank=True
     )
-    posts = models.ManyToManyField(Post, related_name="dishes", blank=True)
 
     class Meta:
         verbose_name_plural = "dishes"
