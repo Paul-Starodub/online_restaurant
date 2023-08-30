@@ -15,7 +15,15 @@
     {{ dish.dish_type }}
     {% if dish.posts.all %}
     <hr>
+      <a
+        href="{% url 'posts:post-create'%}"
+        class="btn btn-dark text-white"
+      >
+        Create post
+      </a>
+      <hr>
     <strong>Posts:</strong>
+
       {% for post in dish.posts.all %}
         <div>
         <a
