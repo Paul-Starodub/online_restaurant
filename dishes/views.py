@@ -9,12 +9,15 @@ from dishes.forms import NameSearchForm, DishCustomizeForm
 from dishes.models import Dish, DishType
 from users.models import User
 
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.utils.decorators import method_decorator
 
 
 def is_admin(user) -> bool:
     return user.is_authenticated and user.is_staff
+
+
+decorators = [login_required, user_passes_test(is_admin)]
 
 
 class DishListView(LoginRequiredMixin, generic.ListView):
@@ -60,30 +63,21 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
-@method_decorator(
-    user_passes_test(is_admin),
-    name="dispatch",
-)
+@method_decorator(decorators, name="dispatch")
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
     form_class = DishCustomizeForm
     success_url = reverse_lazy("cuisine:dish-list")
 
 
-@method_decorator(
-    user_passes_test(is_admin),
-    name="dispatch",
-)
+@method_decorator(decorators, name="dispatch")
 class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
     form_class = DishCustomizeForm
     success_url = reverse_lazy("cuisine:dish-list")
 
 
-@method_decorator(
-    user_passes_test(is_admin),
-    name="dispatch",
-)
+@method_decorator(decorators, name="dispatch")
 class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Dish
     success_url = reverse_lazy("cuisine:dish-list")
@@ -101,10 +95,7 @@ class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = "dishes/dish_type-detail.html"
 
 
-@method_decorator(
-    user_passes_test(is_admin),
-    name="dispatch",
-)
+@method_decorator(decorators, name="dispatch")
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = DishType
     fields = "__all__"
@@ -112,10 +103,7 @@ class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = reverse_lazy("cuisine:dish_type-list")
 
 
-@method_decorator(
-    user_passes_test(is_admin),
-    name="dispatch",
-)
+@method_decorator(decorators, name="dispatch")
 class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = DishType
     fields = "__all__"
@@ -123,10 +111,7 @@ class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("cuisine:dish_type-list")
 
 
-@method_decorator(
-    user_passes_test(is_admin),
-    name="dispatch",
-)
+@method_decorator(decorators, name="dispatch")
 class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = DishType
     template_name = "dishes/dish_type_confirm_delete.html"
