@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -19,12 +19,16 @@ class PostListView(LoginRequiredMixin, generic.ListView):
 class PostCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = PostCustomizeForm
     template_name = "posts/post_form.html"
-    success_url = reverse_lazy("posts:post-list")
+
+    def __init__(self, **kwargs: dict) -> None:
+        super().__init__(**kwargs)
+        self.object = None
 
     def form_valid(self, form: PostCustomizeForm) -> HttpResponseRedirect:
-        form.instance.user = self.request.user
-        form.save()
-        return super().form_valid(form)
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return redirect("posts:post-detail", pk=self.object.pk)
 
 
 class PostDetailView(LoginRequiredMixin, generic.DetailView):
