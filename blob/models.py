@@ -30,7 +30,7 @@ class Post(models.Model):
         ordering = ["dish__name"]
 
     def __str__(self) -> str:
-        return self.description[:25]
+        return self.description[:7]
 
     def get_absolute_url(self) -> str:
         return reverse("blog:post-detail", kwargs={"pk": self.pk})
