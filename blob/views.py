@@ -11,7 +11,7 @@ from blob.models import Post, Commentary
 class PostListView(LoginRequiredMixin, generic.ListView):
     template_name = "posts/post_list.html"
     queryset = Post.objects.select_related("dish", "user").prefetch_related(
-        "commentaries"
+        "commentaries__user"
     )
     paginate_by = 2
 
