@@ -120,7 +120,6 @@ class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 class UpdateLikeView(generic.DetailView):
     model = Dish
     fields = "__all__"
-    success_url = reverse_lazy("cuisine:dish-detail")
 
     def get(
         self, request: HttpRequest, *args: tuple, **kwargs: dict
