@@ -50,13 +50,15 @@ class CommentaryCreateView(LoginRequiredMixin, generic.CreateView):
     queryset = Commentary.objects.select_related("post__user")
     fields = ("content",)
     template_name = "blob/commentary_form.html"
-    success_url = reverse_lazy("posts:post-list")
 
     def form_valid(self, form) -> HttpResponse:
         form.instance.user = self.request.user
         form.instance.post = get_object_or_404(Post, pk=self.kwargs["pk"])
         form.save()
         return super().form_valid(form)
+
+    def get_success_url(self) -> str:
+        return reverse_lazy("posts:post-detail", args=[self.kwargs["pk"]])
 
 
 class CommentaryDetailView(LoginRequiredMixin, generic.DetailView):
