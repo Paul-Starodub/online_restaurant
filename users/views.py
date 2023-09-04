@@ -13,7 +13,6 @@ class CustomerCreateView(generic.CreateView):
 
     model = User
     form_class = CustomerCreationForm
-    success_url = reverse_lazy("cuisine:dish-list")
 
     def post(
         self, request: HttpRequest, *args: tuple, **kwargs: dict

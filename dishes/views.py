@@ -9,12 +9,15 @@ from dishes.forms import NameSearchForm, DishCustomizeForm
 from dishes.models import Dish, DishType
 from users.models import User
 
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.utils.decorators import method_decorator
 
 
 def is_admin(user) -> bool:
     return user.is_authenticated and user.is_staff
+
+
+decorators = [login_required, user_passes_test(is_admin)]
 
 
 class DishListView(LoginRequiredMixin, generic.ListView):
@@ -48,7 +51,6 @@ class DishListView(LoginRequiredMixin, generic.ListView):
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
-    template_name = "dishes/dish-detail.html"
     queryset = Dish.objects.prefetch_related(
         "posts__commentaries", "likes"
     ).select_related("dish_type")
@@ -60,30 +62,21 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
-@method_decorator(
-    user_passes_test(is_admin),
-    name="dispatch",
-)
+@method_decorator(decorators, name="dispatch")
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
     form_class = DishCustomizeForm
     success_url = reverse_lazy("cuisine:dish-list")
 
 
-@method_decorator(
-    user_passes_test(is_admin),
-    name="dispatch",
-)
+@method_decorator(decorators, name="dispatch")
 class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
     form_class = DishCustomizeForm
     success_url = reverse_lazy("cuisine:dish-list")
 
 
-@method_decorator(
-    user_passes_test(is_admin),
-    name="dispatch",
-)
+@method_decorator(decorators, name="dispatch")
 class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Dish
     success_url = reverse_lazy("cuisine:dish-list")
@@ -92,19 +85,16 @@ class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"
-    template_name = "dishes/dish_types-list.html"
+    template_name = "dishes/dish_types_list.html"
     paginate_by = 5
 
 
 class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = DishType
-    template_name = "dishes/dish_type-detail.html"
+    template_name = "dishes/dish_type_detail.html"
 
 
-@method_decorator(
-    user_passes_test(is_admin),
-    name="dispatch",
-)
+@method_decorator(decorators, name="dispatch")
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = DishType
     fields = "__all__"
@@ -112,10 +102,7 @@ class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = reverse_lazy("cuisine:dish_type-list")
 
 
-@method_decorator(
-    user_passes_test(is_admin),
-    name="dispatch",
-)
+@method_decorator(decorators, name="dispatch")
 class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = DishType
     fields = "__all__"
@@ -123,10 +110,7 @@ class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("cuisine:dish_type-list")
 
 
-@method_decorator(
-    user_passes_test(is_admin),
-    name="dispatch",
-)
+@method_decorator(decorators, name="dispatch")
 class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = DishType
     template_name = "dishes/dish_type_confirm_delete.html"
@@ -136,7 +120,6 @@ class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 class UpdateLikeView(generic.DetailView):
     model = Dish
     fields = "__all__"
-    success_url = reverse_lazy("cuisine:dish-detail")
 
     def get(
         self, request: HttpRequest, *args: tuple, **kwargs: dict
