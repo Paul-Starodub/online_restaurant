@@ -49,7 +49,6 @@ class DishListView(LoginRequiredMixin, generic.ListView):
 
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
-    model = Dish
     queryset = Dish.objects.prefetch_related(
         "posts__commentaries", "likes"
     ).select_related("dish_type")
