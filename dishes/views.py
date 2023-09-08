@@ -22,7 +22,6 @@ decorators = [login_required, user_passes_test(is_admin)]
 
 class DishListView(LoginRequiredMixin, generic.ListView):
     template_name = "dishes/dishes_list.html"
-    queryset = Dish.objects.select_related("dish_type")
     paginate_by = 5
 
     def get_context_data(self, **kwargs: dict) -> dict:
