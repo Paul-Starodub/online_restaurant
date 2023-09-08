@@ -2,7 +2,6 @@ from django.urls import path
 
 from blob.views import (
     PostListView,
-    # PostCreateView,
     PostUpdateView,
     PostDetailView,
     PostDeleteView,
