@@ -15,7 +15,7 @@
     {{ dish.dish_type }}
     <hr>
       <a
-        href="{% url 'posts:post-create'%}"
+        href="{% url 'cuisine:post-create' pk=dish.pk %}"
         class="btn btn-dark text-white"
       >
         Create post

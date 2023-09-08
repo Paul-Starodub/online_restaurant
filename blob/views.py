@@ -6,6 +6,7 @@ from django.views import generic
 
 from blob.forms import PostCustomizeForm
 from blob.models import Post, Commentary
+from dishes.models import Dish
 
 
 class PostListView(LoginRequiredMixin, generic.ListView):
@@ -26,6 +27,7 @@ class PostCreateView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form: PostCustomizeForm) -> HttpResponseRedirect:
         self.object = form.save(commit=False)
         self.object.user = self.request.user
+        self.object.dish = get_object_or_404(Dish, pk=self.kwargs["pk"])
         self.object.save()
         return redirect("posts:post-detail", pk=self.object.pk)
 

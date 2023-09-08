@@ -16,7 +16,11 @@
     {{ post.dish }}
     <hr>
     <strong>User:</strong>
-    {{ post.user }}
+      {% if post.user %}
+        {{ post.user }}
+      {% else %}
+       Unknown
+      {% endif %}
       <hr>
       <a
         style="float: right"

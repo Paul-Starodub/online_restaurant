@@ -1,5 +1,6 @@
 from django.urls import path
 
+from blob.views import PostCreateView
 from dishes.views import (
     DishListView,
     DishDetailView,
@@ -28,6 +29,11 @@ urlpatterns = [
     ),
     path(
         "dishes/<int:pk>/delete/", DishDeleteView.as_view(), name="dish-delete"
+    ),
+    path(
+        "dishes/<int:pk>/create_post/",
+        PostCreateView.as_view(),
+        name="post-create",
     ),
     path("types/", DishTypeListView.as_view(), name="dish_type-list"),
     path(

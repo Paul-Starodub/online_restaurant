@@ -1,7 +1,6 @@
 from django import forms
 
 from blob.models import Post
-from dishes.models import Dish
 
 
 class PostCustomizeForm(forms.ModelForm):
@@ -12,9 +11,6 @@ class PostCustomizeForm(forms.ModelForm):
         (4, "good"),
         (5, "excellent"),
     )
-    dish = forms.ModelChoiceField(
-        queryset=Dish.objects.all(), widget=forms.RadioSelect
-    )
     rating = forms.ChoiceField(
         choices=RATING_CHOICES,
         widget=forms.RadioSelect,
@@ -23,4 +19,4 @@ class PostCustomizeForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ("description", "rating", "dish")
+        fields = ("description", "rating")
