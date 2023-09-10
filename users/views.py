@@ -9,7 +9,6 @@ from users.models import User
 
 
 class CustomerCreateView(generic.CreateView):
-    """Class for creating a new customer"""
 
     model = User
     form_class = CustomerCreationForm
@@ -17,7 +16,7 @@ class CustomerCreateView(generic.CreateView):
     def post(
         self, request: HttpRequest, *args: tuple, **kwargs: dict
     ) -> HttpResponseRedirect | HttpResponse:
-        form = CustomerCreationForm(request.POST)
+        form = self.get_form_class()(request.POST)
 
         if form.is_valid():
             user = form.save()
@@ -25,6 +24,6 @@ class CustomerCreateView(generic.CreateView):
             return HttpResponseRedirect(reverse("cuisine:dish-list"))
 
         else:
-            form = CustomerCreationForm()
+            form = self.get_form_class()()
 
         return render(request, "users/user_form.html", {"form": form})
