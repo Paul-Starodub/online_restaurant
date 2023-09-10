@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -20,16 +20,13 @@ class PostCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = PostCustomizeForm
     template_name = "blob/post_form.html"
 
-    def __init__(self, **kwargs: dict) -> None:
-        super().__init__(**kwargs)
-        self.object = None
-
     def form_valid(self, form: PostCustomizeForm) -> HttpResponseRedirect:
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        self.object.dish = get_object_or_404(Dish, pk=self.kwargs["pk"])
-        self.object.save()
-        return redirect("posts:post-detail", pk=self.object.pk)
+        form.instance.user = self.request.user
+        form.instance.dish = get_object_or_404(Dish, pk=self.kwargs["pk"])
+        return super().form_valid(form)
+
+    def get_success_url(self) -> str:
+        return reverse_lazy("posts:post-detail", kwargs={"pk": self.object.pk})
 
 
 class PostDetailView(LoginRequiredMixin, generic.DetailView):
@@ -56,7 +53,6 @@ class CommentaryCreateView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form) -> HttpResponse:
         form.instance.user = self.request.user
         form.instance.post = get_object_or_404(Post, pk=self.kwargs["pk"])
-        form.save()
         return super().form_valid(form)
 
     def get_success_url(self) -> str:

@@ -61,21 +61,21 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 
 
 @method_decorator(decorators, name="dispatch")
-class DishCreateView(LoginRequiredMixin, generic.CreateView):
+class DishCreateView(generic.CreateView):
     model = Dish
     form_class = DishCustomizeForm
     success_url = reverse_lazy("cuisine:dish-list")
 
 
 @method_decorator(decorators, name="dispatch")
-class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
+class DishUpdateView(generic.UpdateView):
     model = Dish
     form_class = DishCustomizeForm
     success_url = reverse_lazy("cuisine:dish-list")
 
 
 @method_decorator(decorators, name="dispatch")
-class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
+class DishDeleteView(generic.DeleteView):
     model = Dish
     success_url = reverse_lazy("cuisine:dish-list")
 
@@ -93,7 +93,7 @@ class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
 
 
 @method_decorator(decorators, name="dispatch")
-class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
+class DishTypeCreateView(generic.CreateView):
     model = DishType
     fields = "__all__"
     template_name = "dishes/dish_type_form.html"
@@ -101,7 +101,7 @@ class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
 
 
 @method_decorator(decorators, name="dispatch")
-class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
+class DishTypeUpdateView(generic.UpdateView):
     model = DishType
     fields = "__all__"
     template_name = "dishes/dish_type_form.html"
@@ -109,7 +109,7 @@ class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 
 @method_decorator(decorators, name="dispatch")
-class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
+class DishTypeDeleteView(generic.DeleteView):
     model = DishType
     template_name = "dishes/dish_type_confirm_delete.html"
     success_url = reverse_lazy("cuisine:dish_type-list")
