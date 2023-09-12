@@ -2,12 +2,6 @@
 
 {% block content %}
   <h1>Posts</h1>
-    <a
-      style="float: right"
-      class="btn btn-secondary text-white"
-      href="{% url 'posts:post-create' %}">Create
-    </a>
-    <hr>
   {% if post_list %}
     <ul>
       {% for post in post_list %}
