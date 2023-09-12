@@ -16,11 +16,7 @@
     {{ post.dish }}
     <hr>
     <strong>User:</strong>
-      {% if post.user %}
-        {{ post.user }}
-      {% else %}
-       Unknown
-      {% endif %}
+        {{ post.user| default:"Unknown user" }}
       <hr>
       <a
         style="float: right"
@@ -38,7 +34,7 @@
         style="float: right"
         class="btn btn-secondary text-white"
         href="{% url 'posts:commentary-detail' pk=comment.pk %}">
-          {{ comment }}
+          {{ comment.content }}
         </a>
         </div>
       {% endfor %}
