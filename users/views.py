@@ -1,7 +1,7 @@
 from django.views import generic
 from django.views.generic.edit import FormView
 
-
+from django.contrib import messages
 from users.forms import CustomerCreationForm, UserProfileForm
 from users.models import User
 from django.urls import reverse_lazy
@@ -11,6 +11,12 @@ class CustomerCreateView(generic.CreateView):
     model = User
     form_class = CustomerCreationForm
     success_url = reverse_lazy("users:login")
+
+    def form_valid(self, form: CustomerCreationForm) -> None:
+        messages.success(
+            self.request, "Congratulations! You have successfully registered"
+        )
+        return super().form_valid(form)
 
 
 class ProfileView(FormView):
