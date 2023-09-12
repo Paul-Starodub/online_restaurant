@@ -9,7 +9,7 @@ class CustomerCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = UserCreationForm.Meta.fields + ("email", "phone")
+        fields = UserCreationForm.Meta.fields + ("email", "phone", "image")
 
 
 class UserProfileForm(UserChangeForm):
@@ -17,4 +17,11 @@ class UserProfileForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ("username", "email", "first_name", "last_name", "phone")
+        fields = (
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "phone",
+            "image",
+        )
