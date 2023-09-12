@@ -4,9 +4,10 @@
 {% block content %}
   <h1>Login</h1>
 
-  {% if form.errors %}
-    <p style="color: red">Invalid credentials</p>
+  {% if messages %}
+    {% for message in messages %}{{ message }}{% endfor %}
   {% endif %}
+  <hr>
 
   <form method="post" action="{% url 'users:login' %}">
     {% csrf_token %}
