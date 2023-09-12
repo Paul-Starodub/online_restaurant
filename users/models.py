@@ -1,8 +1,19 @@
-from django.contrib.auth.models import AbstractUser
+import os
+import uuid
+
+from django.contrib.auth.models import AbstractUser, User
 from django.core.exceptions import ValidationError
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils.translation import gettext as _
+
+
+def user_image_file_path(instance: User, filename: str) -> str:
+    _, extension = os.path.splitext(filename)
+    from django.utils.text import slugify
+
+    filename = f"{slugify(instance.username)}-{uuid.uuid4()}{extension}"
+    return os.path.join("uploads/users/", filename)
 
 
 def validate_ukrainian_phone_number(value: str) -> None:
@@ -23,6 +34,9 @@ class User(AbstractUser):
         region="UA",
         blank=True,
         validators=[validate_ukrainian_phone_number],
+    )
+    image = models.ImageField(
+        upload_to=user_image_file_path, null=True, blank=True
     )
 
     class Meta:
