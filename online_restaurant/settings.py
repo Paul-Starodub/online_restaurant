@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "dishes",
     "users",
-    "blob",
+    "blog",
 ]
 
 MIDDLEWARE = [

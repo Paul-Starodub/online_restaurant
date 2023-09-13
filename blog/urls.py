@@ -1,6 +1,6 @@
 from django.urls import path
 
-from blob.views import (
+from blog.views import (
     PostListView,
     PostUpdateView,
     PostDetailView,
