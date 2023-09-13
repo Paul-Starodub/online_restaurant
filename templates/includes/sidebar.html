@@ -9,4 +9,5 @@
     <br>
   <li><a href="{% url "cuisine:dish-list" %}">Home page</a></li>
   <li><a href="{% url "cuisine:dish_type-list" %}">All types of available food</a></li>
+  {% if user.is_superuser or user.is_staff %}<a href="{% url 'admin:index' %}">Admin panel</a>{% endif %}
 </ul>
