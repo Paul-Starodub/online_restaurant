@@ -1,6 +1,6 @@
 from django import forms
 
-from blob.models import Post
+from blog.models import Post
 
 
 class PostCustomizeForm(forms.ModelForm):

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from blob.views import PostCreateView
+from blog.views import PostCreateView
 from dishes.views import (
     DishListView,
     DishDetailView,

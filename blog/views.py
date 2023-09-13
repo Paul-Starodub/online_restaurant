@@ -4,8 +4,8 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
-from blob.forms import PostCustomizeForm
-from blob.models import Post, Commentary
+from blog.forms import PostCustomizeForm
+from blog.models import Post, Commentary
 from dishes.models import Dish
 
 
@@ -18,7 +18,7 @@ class PostListView(LoginRequiredMixin, generic.ListView):
 
 class PostCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = PostCustomizeForm
-    template_name = "blob/post_form.html"
+    template_name = "blog/post_form.html"
 
     def form_valid(self, form: PostCustomizeForm) -> HttpResponseRedirect:
         form.instance.user = self.request.user
@@ -48,7 +48,7 @@ class PostDeleteView(LoginRequiredMixin, generic.DeleteView):
 class CommentaryCreateView(LoginRequiredMixin, generic.CreateView):
     queryset = Commentary.objects.select_related("post__user")
     fields = ("content",)
-    template_name = "blob/commentary_form.html"
+    template_name = "blog/commentary_form.html"
 
     def form_valid(self, form) -> HttpResponse:
         form.instance.user = self.request.user
