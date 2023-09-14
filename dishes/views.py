@@ -133,6 +133,7 @@ class UpdateLikeView(generic.DetailView):
         )
 
 
+@login_required
 def basket_add(request: HttpRequest, dish_id) -> HttpResponseRedirect:
     dish = Dish.objects.get(id=dish_id)
     baskets = Basket.objects.filter(user=request.user, dish=dish)
@@ -147,6 +148,7 @@ def basket_add(request: HttpRequest, dish_id) -> HttpResponseRedirect:
     return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
 
+@login_required
 def basket_remove(
     request: HttpRequest, basket_id: int
 ) -> HttpResponseRedirect:
