@@ -51,3 +51,17 @@ class Dish(models.Model):
 
     def get_absolute_url(self) -> str:
         return reverse("cuisine:dish-detail", kwargs={"pk": self.pk})
+
+
+class Basket(models.Model):
+    user = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE, related_name="baskets"
+    )
+    dish = models.ForeignKey(
+        Dish, on_delete=models.CASCADE, related_name="baskets"
+    )
+    quantity = models.PositiveSmallIntegerField(default=0)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"Basket for user {self.user} | Dish: {self.dish}"
