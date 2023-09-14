@@ -1,5 +1,6 @@
 from django.views import generic
 from django.views.generic.edit import FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib import messages
 
@@ -21,7 +22,7 @@ class CustomerCreateView(generic.CreateView):
         return super().form_valid(form)
 
 
-class ProfileView(FormView):
+class ProfileView(LoginRequiredMixin, FormView):
     template_name = "users/profile.html"
     form_class = UserProfileForm
     success_url = reverse_lazy("users:user-profile")
