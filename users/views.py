@@ -2,6 +2,8 @@ from django.views import generic
 from django.views.generic.edit import FormView
 
 from django.contrib import messages
+
+from dishes.models import Basket
 from users.forms import CustomerCreationForm, UserProfileForm
 from users.models import User
 from django.urls import reverse_lazy
@@ -32,3 +34,8 @@ class ProfileView(FormView):
         kwargs = super().get_form_kwargs()
         kwargs["instance"] = self.request.user
         return kwargs
+
+    def get_context_data(self, **kwargs: dict) -> dict:
+        context = super().get_context_data(**kwargs)
+        context["baskets"] = Basket.objects.filter(user=self.request.user)
+        return context

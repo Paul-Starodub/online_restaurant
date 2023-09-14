@@ -6,11 +6,11 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from dishes.forms import NameSearchForm, DishCustomizeForm
-from dishes.models import Dish, DishType
-from users.models import User
+from dishes.models import Dish, DishType, Basket
 
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth import get_user_model
 
 
 def is_admin(user) -> bool:
@@ -123,7 +123,7 @@ class UpdateLikeView(generic.DetailView):
         self, request: HttpRequest, *args: tuple, **kwargs: dict
     ) -> HttpResponseRedirect:
         dish = get_object_or_404(Dish, pk=self.kwargs["pk"])
-        user = get_object_or_404(User, pk=self.request.user.pk)
+        user = get_object_or_404(get_user_model(), pk=self.request.user.pk)
         if user not in dish.likes.all():
             dish.likes.add(user)
         else:
@@ -131,3 +131,26 @@ class UpdateLikeView(generic.DetailView):
         return HttpResponseRedirect(
             reverse("cuisine:dish-detail", kwargs={"pk": self.kwargs["pk"]})
         )
+
+
+def basket_add(request: HttpRequest, dish_id) -> HttpResponseRedirect:
+    dish = Dish.objects.get(id=dish_id)
+    baskets = Basket.objects.filter(user=request.user, dish=dish)
+
+    if not baskets.exists():
+        Basket.objects.create(user=request.user, dish=dish, quantity=1)
+    else:
+        basket = baskets.first()
+        basket.quantity += 1
+        basket.save()
+
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])
+
+
+def basket_remove(
+    request: HttpRequest, basket_id: int
+) -> HttpResponseRedirect:
+    basket = Basket.objects.get(id=basket_id)
+    basket.delete()
+
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])

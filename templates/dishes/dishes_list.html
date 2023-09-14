@@ -28,6 +28,12 @@
           <hr>
           <div>Type of dish: {{ dish.dish_type }}</div>
           <p></p>
+          <div class="card-footer text-center">
+            <a class="btn btn-outline-success"
+               href="{% url 'cuisine:basket-add' dish.id %}">
+              Add to basket
+            </a>
+          </div>
           <br>
         </li>
       {% endfor %}
@@ -38,64 +44,3 @@
   {% endif %}
   <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}</p>
 {% endblock %}
-{#<body data-new-gr-c-s-check-loaded="14.1123.0" data-gr-ext-installed="">#}
-{##}
-{##}
-{#<!-- Google Tag Manager (noscript) -->#}
-{#<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTR9JBD"#}
-{#                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>#}
-{#<!-- End Google Tag Manager (noscript) -->#}
-{##}
-{##}
-{##}
-{#  <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top effect-main past-main">#}
-{#    <div class="container container-s">#}
-{#      <a class="navbar-brand logo" title="Бесконтактное цифровое меню для ресторана · QR код для ресторана · Конструктор меню" href="/ru">#}
-{#        <picture>#}
-{#          <source type="image/webp" srcset="/assets/landing/images/logo-d3555fbe009a69cef9d73631e715b1f9.webp">#}
-{#          <source type="image/png" srcset="/assets/landing/images/logo-d0347aa736fc619ce13c162fba50dca8.png">#}
-{#          <img alt="Stravopys" width="570" height="155" src="/assets/landing/images/logo-d0347aa736fc619ce13c162fba50dca8.png">#}
-{#        </picture>#}
-{#      </a>#}
-{#      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">#}
-{#        <span class="navbar-toggler-icon"></span>#}
-{#      </button>#}
-{#      <div class="collapse navbar-collapse" id="navbarSupportedContent">#}
-{#        <ul class="navbar-nav navbar-right">#}
-{#          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/ru#client-part">QR Меню</a></li>#}
-{#          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/ru#faq">FAQ</a></li>#}
-{#          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/ru#pricing">Цены</a></li>#}
-{#          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/ru/blog">Блог</a></li>#}
-{##}
-{##}
-{##}
-{#          <li class="nav-item"><a class="btn-cta nav-link js-scroll-trigger" href="/ru#signup">Регистрация</a></li>#}
-{#          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="https://admin.stravopys.com/login?lang=ru">Войти</a></li>#}
-{#        </ul>#}
-{#      </div>#}
-{#    </div>#}
-{#  </nav>#}
-{##}
-{##}
-{#<div id="main" class="main">#}
-{##}
-{##}
-{##}
-{#  <div class="container-m text-center">#}
-{#    <div class="home hero-2">#}
-{#      <div class="hero-content wow fadeIn" style="visibility: visible; animation-name: fadeIn;">#}
-{#        <h1>Restaurant</h1>#}
-{#        <p>Сервис для создания бесконтактного меню, доступного по QR коду, с возможностью оформления заказов на доставку с телефона. Предназначен для управляющих кафе, ресторанов, отелей и баров, которые хотят подарить посетителям новый опыт взаимодействия с удобным интерфейсом для демонстрации своих блюд и напитков</p>#}
-{#      </div>#}
-{#      <div class="hero-img wow fadeIn" style="visibility: visible; animation-name: fadeIn;">#}
-{#        <picture>#}
-{#          <source type="image/webp" srcset="/assets/landing/images/en/hero-6305a292f14c22bb3a9aa815ca80d0dc.webp">#}
-{#          <source type="image/jpeg" srcset="/assets/landing/images/en/hero-19339123a5d81c321d0c3d5e1be28386.jpg">#}
-{#          <img class="img-fluid" width="938" height="525" src="/assets/landing/images/en/hero-19339123a5d81c321d0c3d5e1be28386.jpg" alt="Stravopys">#}
-{#        </picture>#}
-{#      </div>#}
-{#      <div class="client-list">#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
-{#{% endblock %}f#}

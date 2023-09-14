@@ -1,6 +1,7 @@
 <ul class="sidebar-nav">
   {% if user.is_authenticated %}
     <li>User: {{ user.username }}</li>
+    <li><a href="{% url 'users:user-profile' %}">Profile</a></li>
     <li><a href="{% url 'logout' %}">Logout</a></li>
   {% else %}
     <li><a href="{% url 'users:login' %}">Login</a></li>
