@@ -38,8 +38,4 @@ class ProfileView(FormView):
     def get_context_data(self, **kwargs: dict) -> dict:
         context = super().get_context_data(**kwargs)
         context["baskets"] = Basket.objects.filter(user=self.request.user)
-        context["total_sum"] = sum(basket.sum for basket in context["baskets"])
-        context["total_quantity"] = sum(
-            basket.quantity for basket in context["baskets"]
-        )
         return context
