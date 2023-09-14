@@ -1,6 +1,7 @@
 from __future__ import annotations
 import os
 import uuid
+from _decimal import Decimal
 
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
@@ -53,6 +54,14 @@ class Dish(models.Model):
         return reverse("cuisine:dish-detail", kwargs={"pk": self.pk})
 
 
+class BasketQuerySet(models.QuerySet):
+    def total_sum(self) -> Decimal:
+        return sum(basket.sum for basket in self.filter())
+
+    def total_quantity(self) -> int:
+        return sum(basket.quantity for basket in self.filter())
+
+
 class Basket(models.Model):
     user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, related_name="baskets"
@@ -63,5 +72,11 @@ class Basket(models.Model):
     quantity = models.PositiveSmallIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
 
+    objects = BasketQuerySet.as_manager()
+
     def __str__(self) -> str:
         return f"Basket for user {self.user} | Dish: {self.dish}"
+
+    @property
+    def sum(self) -> Decimal:
+        return self.dish.price * self.quantity
