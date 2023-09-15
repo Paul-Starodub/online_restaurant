@@ -1,5 +1,4 @@
 from django.views import generic
-from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib import messages
@@ -22,19 +21,13 @@ class CustomerCreateView(generic.CreateView):
         return super().form_valid(form)
 
 
-class ProfileView(LoginRequiredMixin, FormView):
-    template_name = "users/profile.html"
+class CustomerProfileView(LoginRequiredMixin, generic.UpdateView):
+    model = User
     form_class = UserProfileForm
-    success_url = reverse_lazy("users:user-profile")
+    template_name = "users/profile.html"
 
-    def form_valid(self, form: UserProfileForm) -> None:
-        form.save()
-        return super().form_valid(form)
-
-    def get_form_kwargs(self) -> dict[str, dict]:
-        kwargs = super().get_form_kwargs()
-        kwargs["instance"] = self.request.user
-        return kwargs
+    def get_success_url(self) -> str:
+        return reverse_lazy("users:user-profile", args=(self.object.id,))
 
     def get_context_data(self, **kwargs: dict) -> dict:
         context = super().get_context_data(**kwargs)

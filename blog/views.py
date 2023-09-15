@@ -13,7 +13,7 @@ class PostListView(LoginRequiredMixin, generic.ListView):
     queryset = Post.objects.select_related("dish", "user").prefetch_related(
         "commentaries__user"
     )
-    paginate_by = 2
+    paginate_by = 10
 
 
 class PostCreateView(LoginRequiredMixin, generic.CreateView):

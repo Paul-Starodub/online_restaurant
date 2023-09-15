@@ -1,7 +1,7 @@
 <ul class="sidebar-nav">
   {% if user.is_authenticated %}
     <li>User: {{ user.username }}</li>
-    <li><a href="{% url 'users:user-profile' %}">Profile</a></li>
+    <li><a href="{% url 'users:user-profile' user.pk %}">Profile</a></li>
     <li><a href="{% url 'logout' %}">Logout</a></li>
   {% else %}
     <li><a href="{% url 'users:login' %}">Login</a></li>
@@ -11,5 +11,6 @@
   <li><a href="{% url "cuisine:index" %}">Home</a></li>
   <li><a href="{% url "cuisine:dish-list" %}">All dishes</a></li>
   <li><a href="{% url "cuisine:dish_type-list" %}">All types of available food</a></li>
+  <li><a href="{% url "posts:post-list" %}">Forum</a></li>
   {% if user.is_superuser or user.is_staff %}<a href="{% url 'admin:index' %}">Admin panel</a>{% endif %}
 </ul>
