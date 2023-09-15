@@ -38,5 +38,7 @@ class ProfileView(LoginRequiredMixin, FormView):
 
     def get_context_data(self, **kwargs: dict) -> dict:
         context = super().get_context_data(**kwargs)
-        context["baskets"] = Basket.objects.filter(user=self.request.user)
+        context["baskets"] = Basket.objects.filter(
+            user=self.request.user
+        ).select_related("dish", "user")
         return context
