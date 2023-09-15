@@ -56,12 +56,6 @@ class Dish(models.Model):
 
 
 class BasketQuerySet(models.QuerySet):
-    # def total_sum(self) -> Decimal:
-    #     return sum(basket.sum for basket in self.filter())
-    #
-    # def total_quantity(self) -> int:
-    #     return sum(basket.quantity for basket in self.filter())
-
     def total_sum(self) -> Decimal:
         result = self.aggregate(
             total_sum=Sum(
