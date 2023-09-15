@@ -37,8 +37,8 @@ class DishListView(LoginRequiredMixin, generic.ListView):
     template_name = "dishes/dishes_list.html"
     paginate_by = 5
 
-    def get_context_data(self, **kwargs: dict) -> dict:
-        context = super().get_context_data(**kwargs)
+    def get_context_data(self, *, object_list=None, **kwargs) -> dict:
+        context = super().get_context_data()
         name = self.request.GET.get("name", "")
         context["search_form"] = NameSearchForm(initial={"name": name})
         context["user"] = self.request.user
