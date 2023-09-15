@@ -20,18 +20,25 @@ def is_admin(user) -> bool:
 decorators = [login_required, user_passes_test(is_admin)]
 
 
+class IndexView(LoginRequiredMixin, generic.TemplateView):
+    template_name = "dishes/index.html"
+
+    def get_context_data(self, **kwargs: dict) -> dict:
+        context = super().get_context_data(**kwargs)
+        self.request.session["num_visits"] = (
+            self.request.session.get("num_visits", 0) + 1
+        )
+        context["num_visits"] = self.request.session.get("num_visits", 1)
+
+        return context
+
+
 class DishListView(LoginRequiredMixin, generic.ListView):
     template_name = "dishes/dishes_list.html"
     paginate_by = 5
 
     def get_context_data(self, **kwargs: dict) -> dict:
         context = super().get_context_data(**kwargs)
-
-        self.request.session["num_visits"] = (
-            self.request.session.get("num_visits", 0) + 1
-        )
-        context["num_visits"] = self.request.session.get("num_visits", 1)
-
         name = self.request.GET.get("name", "")
         context["search_form"] = NameSearchForm(initial={"name": name})
         context["user"] = self.request.user

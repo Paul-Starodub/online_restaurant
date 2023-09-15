@@ -8,7 +8,8 @@
   <li><a href="{% url "users:user-create" %}">Registration</a></li>
   {% endif %}
     <br>
-  <li><a href="{% url "cuisine:dish-list" %}">Home page</a></li>
+  <li><a href="{% url "cuisine:index" %}">Home</a></li>
+  <li><a href="{% url "cuisine:dish-list" %}">All dishes</a></li>
   <li><a href="{% url "cuisine:dish_type-list" %}">All types of available food</a></li>
   {% if user.is_superuser or user.is_staff %}<a href="{% url 'admin:index' %}">Admin panel</a>{% endif %}
 </ul>

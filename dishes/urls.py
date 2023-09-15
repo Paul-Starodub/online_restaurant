@@ -15,9 +15,11 @@ from dishes.views import (
     UpdateLikeView,
     basket_add,
     basket_remove,
+    IndexView,
 )
 
 urlpatterns = [
+    path("", IndexView.as_view(), name="index"),
     path("dishes/", DishListView.as_view(), name="dish-list"),
     path("dishes/<int:pk>/", DishDetailView.as_view(), name="dish-detail"),
     path(
@@ -57,7 +59,9 @@ urlpatterns = [
         name="dish_type-delete",
     ),
     path("baskets/add/<int:dish_id>/", basket_add, name="basket-add"),
-    path("baskets/remove/<int:basket_id>/", basket_remove, name="basket-remove"),
+    path(
+        "baskets/remove/<int:basket_id>/", basket_remove, name="basket-remove"
+    ),
 ]
 
 app_name = "cuisine"
