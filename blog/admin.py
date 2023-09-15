@@ -1,5 +1,17 @@
 from django.contrib import admin
 
-from blog.models import Post
+from blog.models import Post, Commentary
 
-admin.site.register(Post)
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    search_fields = ("description",)
+    list_display = ("description", "user", "dish")
+    list_filter = ("dish__dish_type",)
+    ordering = ("-created_time",)
+
+
+@admin.register(Commentary)
+class CommentaryAdmin(admin.ModelAdmin):
+    search_fields = ("user", "post")
+    list_display = ("content", "user", "post")
