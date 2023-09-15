@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
+from django.db.models import F, Sum
 
 
 class DishType(models.Model):
@@ -55,11 +56,26 @@ class Dish(models.Model):
 
 
 class BasketQuerySet(models.QuerySet):
+    # def total_sum(self) -> Decimal:
+    #     return sum(basket.sum for basket in self.filter())
+    #
+    # def total_quantity(self) -> int:
+    #     return sum(basket.quantity for basket in self.filter())
+
     def total_sum(self) -> Decimal:
-        return sum(basket.sum for basket in self.filter())
+        result = self.aggregate(
+            total_sum=Sum(
+                F("dish__price") * F("quantity"),
+                output_field=models.DecimalField(
+                    max_digits=15, decimal_places=2
+                ),
+            )
+        )
+        return result["total_sum"]
 
     def total_quantity(self) -> int:
-        return sum(basket.quantity for basket in self.filter())
+        result = self.aggregate(total_quantity=Sum("quantity"))
+        return result["total_quantity"]
 
 
 class Basket(models.Model):
