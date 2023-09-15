@@ -1,7 +1,6 @@
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 from dishes.models import Basket
 from users.forms import CustomerCreationForm, UserProfileForm
@@ -9,16 +8,11 @@ from users.models import User
 from django.urls import reverse_lazy
 
 
-class CustomerCreateView(generic.CreateView):
+class CustomerCreateView(SuccessMessageMixin, generic.CreateView):
     model = User
     form_class = CustomerCreationForm
     success_url = reverse_lazy("users:login")
-
-    def form_valid(self, form: CustomerCreationForm) -> None:
-        messages.success(
-            self.request, "Congratulations! You have successfully registered"
-        )
-        return super().form_valid(form)
+    success_message = "Congratulations! You have successfully registered"
 
 
 class CustomerProfileView(LoginRequiredMixin, generic.UpdateView):
