@@ -1,7 +1,10 @@
+from __future__ import annotations
 import os
 import uuid
+from django.core.mail import send_mail
 
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
@@ -38,9 +41,31 @@ class User(AbstractUser):
     image = models.ImageField(
         upload_to=user_image_file_path, null=True, blank=True
     )
+    is_verified_email = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["username"]
 
     def __str__(self) -> str:
         return self.username
+
+
+class EmailVerification(models.Model):
+    code = models.UUIDField(unique=True)
+    user = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE, related_name="emails"
+    )
+    created = models.DateTimeField(auto_now_add=True)
+    expiration = models.DateTimeField()
+
+    def __str__(self) -> str:
+        return f"EmailVerification object for {self.user.email}"
+
+    def send_verification_email(self) -> None:
+        send_mail(
+            "Subject here",
+            "Here is the message.",
+            "from@example.com",
+            [self.user.email],
+            fail_silently=False,
+        )
