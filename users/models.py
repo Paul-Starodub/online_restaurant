@@ -7,8 +7,11 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
+from django.urls import reverse
+from django.conf import settings
 from django.utils.translation import gettext as _
+from django.utils.timezone import now
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 def user_image_file_path(instance: User, filename: str) -> str:
@@ -62,10 +65,24 @@ class EmailVerification(models.Model):
         return f"EmailVerification object for {self.user.email}"
 
     def send_verification_email(self) -> None:
+        link = reverse(
+            "users:email_verification",
+            kwargs={"email": self.user.email, "code": self.code},
+        )
+        verification_link = f"{settings.DOMAIN_NAME}{link}"
+        subject = f"account confirmation for {self.user}"
+        message = (
+            "To confirm your account for your {}, follow the link: {}".format(
+                self.user.email, verification_link
+            )
+        )
         send_mail(
-            "Subject here",
-            "Here is the message.",
-            "from@example.com",
-            [self.user.email],
+            subject=subject,
+            message=message,
+            from_email="from@example.com",
+            recipient_list=[self.user.email],
             fail_silently=False,
         )
+
+    def is_expired(self) -> bool:
+        return True if now() >= self.expiration else False
