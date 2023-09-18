@@ -142,7 +142,7 @@ class UpdateLikeView(generic.DetailView):
 
 @login_required
 def basket_add(request: HttpRequest, dish_id) -> HttpResponseRedirect:
-    dish = Dish.objects.get(id=dish_id)
+    dish = get_object_or_404(Dish, pk=dish_id)
     baskets = Basket.objects.filter(user=request.user, dish=dish)
 
     if not baskets.exists():
@@ -159,7 +159,7 @@ def basket_add(request: HttpRequest, dish_id) -> HttpResponseRedirect:
 def basket_remove(
     request: HttpRequest, basket_id: int
 ) -> HttpResponseRedirect:
-    basket = Basket.objects.get(id=basket_id)
+    basket = get_object_or_404(Basket, id=basket_id)
     basket.delete()
 
     return HttpResponseRedirect(request.META["HTTP_REFERER"])
