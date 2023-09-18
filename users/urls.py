@@ -1,7 +1,11 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
 
-from users.views import CustomerCreateView, CustomerProfileView
+from users.views import (
+    CustomerCreateView,
+    CustomerProfileView,
+    EmailVerificationView,
+)
 
 urlpatterns = [
     path("create/", CustomerCreateView.as_view(), name="user-create"),
@@ -16,6 +20,11 @@ urlpatterns = [
     path(
         "logout/", LogoutView.as_view(), name="logout"
     ),  # logout works without this url
+    path(
+        "verify/<str:email>/<uuid:code>/",
+        EmailVerificationView.as_view(),
+        name="email_verification",
+    ),
 ]
 
 app_name = "users"
