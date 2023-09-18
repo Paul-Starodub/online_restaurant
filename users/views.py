@@ -5,7 +5,6 @@ from django.http import HttpResponseRedirect, HttpRequest
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 
-from dishes.models import Basket
 from users.forms import CustomerCreationForm, UserProfileForm
 from users.models import User, EmailVerification
 
