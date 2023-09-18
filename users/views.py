@@ -1,11 +1,13 @@
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect, HttpRequest
+from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy, reverse
 
 from dishes.models import Basket
 from users.forms import CustomerCreationForm, UserProfileForm
-from users.models import User
-from django.urls import reverse_lazy
+from users.models import User, EmailVerification
 
 
 class CustomerCreateView(SuccessMessageMixin, generic.CreateView):
@@ -29,3 +31,25 @@ class CustomerProfileView(LoginRequiredMixin, generic.UpdateView):
             user=self.request.user
         ).select_related("dish", "user")
         return context
+
+
+class EmailVerificationView(generic.TemplateView):
+    template_name = "users/email_verification.html"
+
+    def get(
+        self, request: HttpRequest, *args: tuple, **kwargs: dict
+    ) -> HttpResponseRedirect:
+        code = kwargs["code"]
+        user = get_object_or_404(User, email=kwargs["email"])
+        email_verifications = EmailVerification.objects.filter(
+            user=user, code=code
+        )
+        if (
+            email_verifications.exists()
+            and not email_verifications.first().is_expired()
+        ):
+            user.is_verified_email = True
+            user.save()
+            return super().get(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect(reverse("cuisine:index"))
