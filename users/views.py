@@ -25,13 +25,6 @@ class CustomerProfileView(LoginRequiredMixin, generic.UpdateView):
     def get_success_url(self) -> str:
         return reverse_lazy("users:user-profile", args=(self.object.id,))
 
-    def get_context_data(self, **kwargs: dict) -> dict:
-        context = super().get_context_data(**kwargs)
-        context["baskets"] = Basket.objects.filter(
-            user=self.request.user
-        ).select_related("dish", "user")
-        return context
-
 
 class EmailVerificationView(generic.TemplateView):
     template_name = "users/email_verification.html"
