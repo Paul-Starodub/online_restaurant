@@ -1,13 +1,13 @@
 from django.urls import path
 
 from blog.views import (
+    CommentaryCreateView,
+    CommentaryDeleteView,
+    CommentaryDetailView,
+    PostDeleteView,
+    PostDetailView,
     PostListView,
     PostUpdateView,
-    PostDetailView,
-    PostDeleteView,
-    CommentaryCreateView,
-    CommentaryDetailView,
-    CommentaryDeleteView,
 )
 
 urlpatterns = [

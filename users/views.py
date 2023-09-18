@@ -1,13 +1,12 @@
-from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.http import HttpResponseRedirect, HttpRequest
+from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse, reverse_lazy
+from django.views import generic
 
-from dishes.models import Basket
 from users.forms import CustomerCreationForm, UserProfileForm
-from users.models import User, EmailVerification
+from users.models import EmailVerification, User
 
 
 class CustomerCreateView(SuccessMessageMixin, generic.CreateView):

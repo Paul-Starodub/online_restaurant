@@ -1,11 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
 from blog.forms import PostCustomizeForm
-from blog.models import Post, Commentary
+from blog.models import Commentary, Post
 from dishes.models import Dish
 
 

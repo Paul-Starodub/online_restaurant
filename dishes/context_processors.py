@@ -1,5 +1,6 @@
-from django.http import HttpRequest
 from django.db.models import QuerySet
+from django.http import HttpRequest
+
 from dishes.models import Basket
 
 

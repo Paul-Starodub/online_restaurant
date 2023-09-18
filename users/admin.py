@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
-from dishes.admin import BasketAdmin
 
-from users.models import User, EmailVerification
+from dishes.admin import BasketAdmin
+from users.models import EmailVerification, User
 
 admin.site.site_url = reverse_lazy("cuisine:dish-list")
 admin.site.site_header = "Restaurant admin panel"

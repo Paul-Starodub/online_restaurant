@@ -2,20 +2,20 @@ from django.urls import path
 
 from blog.views import PostCreateView
 from dishes.views import (
-    DishListView,
-    DishDetailView,
     DishCreateView,
-    DishUpdateView,
     DishDeleteView,
-    DishTypeListView,
-    DishTypeDetailView,
+    DishDetailView,
+    DishListView,
     DishTypeCreateView,
-    DishTypeUpdateView,
     DishTypeDeleteView,
+    DishTypeDetailView,
+    DishTypeListView,
+    DishTypeUpdateView,
+    DishUpdateView,
+    IndexView,
     UpdateLikeView,
     basket_add,
     basket_remove,
-    IndexView,
 )
 
 urlpatterns = [

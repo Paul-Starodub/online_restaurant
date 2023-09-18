@@ -1,11 +1,11 @@
 import uuid
 from datetime import timedelta
 
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.utils.timezone import now
-
-from users.models import User, EmailVerification
 from phonenumber_field.formfields import PhoneNumberField
+
+from users.models import EmailVerification, User
 
 
 class CustomerCreationForm(UserCreationForm):
