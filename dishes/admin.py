@@ -5,9 +5,9 @@ from dishes.models import DishType, Dish, Basket
 
 @admin.register(Dish)
 class DishAdmin(admin.ModelAdmin):
-    search_fields = ["name"]
+    search_fields = ("name",)
     list_display_links = ("name",)
-    list_display = ["id", "name", "price", "dish_type"]
+    list_display = ("name", "price", "dish_type")
     list_filter = ["dish_type"]
 
 
