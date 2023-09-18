@@ -1,16 +1,17 @@
 from __future__ import annotations
+
 import os
 import uuid
-from django.core.mail import send_mail
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
+from django.core.mail import send_mail
 from django.db import models
 from django.urls import reverse
-from django.conf import settings
-from django.utils.translation import gettext as _
 from django.utils.timezone import now
+from django.utils.translation import gettext as _
 from phonenumber_field.modelfields import PhoneNumberField
 
 

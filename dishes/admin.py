@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from dishes.models import DishType, Dish, Basket
+from dishes.models import Basket, Dish, DishType
 
 
 @admin.register(Dish)

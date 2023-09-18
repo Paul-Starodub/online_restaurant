@@ -1,13 +1,14 @@
 from __future__ import annotations
+
 import os
 import uuid
-from _decimal import Decimal
 
+from _decimal import Decimal
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.urls import reverse
 from django.db.models import F, Sum
+from django.urls import reverse
 
 
 class DishType(models.Model):

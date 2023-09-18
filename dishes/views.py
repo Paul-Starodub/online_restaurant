@@ -1,16 +1,15 @@
+from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import QuerySet
-from django.http import HttpResponseRedirect, HttpRequest
+from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse, reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views import generic
 
-from dishes.forms import NameSearchForm, DishCustomizeForm
-from dishes.models import Dish, DishType, Basket
-
-from django.contrib.auth.decorators import user_passes_test, login_required
-from django.utils.decorators import method_decorator
-from django.contrib.auth import get_user_model
+from dishes.forms import DishCustomizeForm, NameSearchForm
+from dishes.models import Basket, Dish, DishType
 
 
 def is_admin(user) -> bool:
