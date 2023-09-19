@@ -41,7 +41,7 @@ class Commentary(models.Model):
         get_user_model(),
         on_delete=models.SET_NULL,
         related_name="commentaries",
-        null=True
+        null=True,
     )
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name="commentaries"
