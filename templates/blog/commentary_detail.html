@@ -17,8 +17,10 @@
   {% if user == comment.user %}
     <a
       style="float: right"
-      class="btn btn-secondary text-white"
-      href="{% url 'posts:commentary-delete' pk=comment.pk %}">Delete comment
+      class="btn btn-danger text-white"
+      href="{% url 'posts:commentary-delete' pk=comment.pk %}"
+    >
+      Delete comment
     </a>
     <hr>
   {% endif %}

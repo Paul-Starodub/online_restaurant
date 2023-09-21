@@ -6,6 +6,6 @@
   <form action="" method="post" novalidate enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
-    <input type="submit" value="Submit" class="btn btn-dark">
+    <input type="submit" value="Submit" class="btn btn-outline-success">
   </form>
 {% endblock %}

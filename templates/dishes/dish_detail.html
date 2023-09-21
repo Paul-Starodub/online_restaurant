@@ -13,41 +13,53 @@
     <hr>
     <strong>Type:</strong>
     {{ dish.dish_type }}
-    <hr>
       <a
+        style="float: right"
         href="{% url 'cuisine:post-create' pk=dish.pk %}"
-        class="btn btn-dark text-white"
+        class="btn text-bg-success"
       >
         Create post
       </a>
     {% if dish.posts.all %}
       <hr>
-    <strong>Posts:</strong>
-
+    <strong class="text-bg-success">Posts:</strong>
+      <ul>
       {% for post in dish.posts.all %}
-        <div>
+        <br>
+        <li>
         <a
-        style="float: right"
         class="btn btn-secondary text-white"
         href="{% url 'posts:post-detail' pk=post.pk %}">
           {{ post }}
         </a>
-        </div>
+          <br>
+        <br>
+        </li>
       {% endfor %}
+      </ul>
     {% endif %}
     <hr>
-    <strong>Likes:</strong>
+    <strong class="text-bg-warning">Likes:</strong>
     {{ dish.likes.count }}
     {% if user.is_authenticated %}
       {% if user in dish.likes.all %}
         <form method="get" action="{% url 'cuisine:update_like_dish' pk=dish.pk %}">
           {% csrf_token %}
-          <button type="submit">Unlike</button>
+            <div class="d-flex justify-content-end">
+            <button
+                type="submit"
+                class="btn btn-outline-success text-bg-warning"
+            >
+              Unlike
+            </button>
+            </div>
         </form>
       {% else %}
         <form method="get" action="{% url 'cuisine:update_like_dish' pk=dish.pk %}">
           {% csrf_token %}
-          <button type="submit">Like</button>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-outline-success text-bg-warning">Like</button>
+            </div>
         </form>
       {% endif %}
     {% endif %}
@@ -55,15 +67,17 @@
       <hr>
       <a
         href="{% url 'cuisine:dish-update' pk=dish.pk %}"
-        class="btn btn-dark link-to-page text-white"
+        class="btn btn-info link-to-page text-white"
       >
         Update dish
       </a>
     <a
       style="float: right"
-      class="btn btn-secondary text-white"
-      href="{% url 'cuisine:dish-delete' pk=dish.pk %}">Delete
+      class="btn btn-danger text-white"
+      href="{% url 'cuisine:dish-delete' pk=dish.pk %}"
+    >
+      Delete
     </a>
-    <hr>
   {% endif %}
+  <hr>
 {% endblock%}

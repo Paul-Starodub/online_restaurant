@@ -12,7 +12,7 @@
   <form method="post" action="{% url 'users:login' %}">
     {% csrf_token %}
     {{ form|crispy }}
-      <input type="submit" value="Submit" class="btn btn-dark">
+      <input type="submit" value="Submit" class="btn btn-success">
   </form>
 
 {% endblock %}
