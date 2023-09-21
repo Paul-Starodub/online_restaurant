@@ -6,8 +6,10 @@
   {% if user.is_staff %}
     <a
       style="float: right"
-      class="btn btn-secondary text-white"
-      href="{% url 'cuisine:dish_type-create' %}">Create
+      class="btn btn-light text-bg-warning"
+      href="{% url 'cuisine:dish_type-create' %}"
+    >
+      Create
     </a>
   {% endif %}
   {% if dish_type_list %}

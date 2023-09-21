@@ -5,7 +5,11 @@
   {% if post_list %}
     <ul>
       {% for post in post_list %}
-        <a href="{% url 'posts:post-detail' post.pk %}">{{ post.description|truncatewords:2 }}</a>
+        <a
+            href="{% url 'posts:post-detail' post.pk %}"
+        >
+          {{ post.description|truncatewords:2 }}
+        </a>
         Rating: {{ post.rating }}
         Created time: {{ post.created_time }}
         {% if post.user %}

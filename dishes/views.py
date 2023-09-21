@@ -36,7 +36,9 @@ class DishListView(LoginRequiredMixin, generic.ListView):
     template_name = "dishes/dishes_list.html"
     paginate_by = 5
 
-    def get_context_data(self, *, object_list=None, **kwargs) -> dict:
+    def get_context_data(
+        self, *, object_list: list = None, **kwargs: dict
+    ) -> dict:
         context = super().get_context_data()
         name = self.request.GET.get("name", "")
         context["search_form"] = NameSearchForm(initial={"name": name})
@@ -140,7 +142,7 @@ class UpdateLikeView(generic.DetailView):
 
 
 @login_required
-def basket_add(request: HttpRequest, dish_id) -> HttpResponseRedirect:
+def basket_add(request: HttpRequest, dish_id: int) -> HttpResponseRedirect:
     dish = get_object_or_404(Dish, pk=dish_id)
     baskets = Basket.objects.filter(user=request.user, dish=dish)
 

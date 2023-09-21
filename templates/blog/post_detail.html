@@ -19,25 +19,27 @@
         {{ post.user| default:"Unknown user" }}
       <hr>
       <a
-        style="float: right"
-        class="btn btn-secondary text-white"
+        class="btn btn-success text-white"
         href="{% url 'posts:comment-create' pk=post.pk %}">
           Create comment
       </a>
-      <br>
     {% if post.commentaries.all %}
       <hr>
-    <strong>Comments:</strong>
-      {% for comment in post.commentaries.all %}
-        <div>
-        <a
-        style="float: right"
-        class="btn btn-secondary text-white"
-        href="{% url 'posts:commentary-detail' pk=comment.pk %}">
-          {{ comment.content }}
-        </a>
-        </div>
-      {% endfor %}
+      <strong>Comments:</strong>
+        <ul>
+          {% for comment in post.commentaries.all %}
+            <br>
+            <li>
+              <a
+              class="btn btn-secondary text-white"
+              href="{% url 'posts:commentary-detail' pk=comment.pk %}">
+                {{ comment.content }}
+                <br>
+              </a>
+              <br>
+            </li>
+          {% endfor %}
+        </ul>
     {% else %}
       There are not comments yet! You can add some one.
     {% endif %}
@@ -46,14 +48,16 @@
     <hr>
     <a
       href="{% url 'posts:post-update' pk=post.pk %}"
-      class="btn btn-dark link-to-page text-white"
+      class="btn btn-info text-white"
     >
       Update post
     </a>
     <a
       style="float: right"
-      class="btn btn-secondary text-white"
-      href="{% url 'posts:post-delete' pk=post.pk %}">Delete post
+      class="btn btn-danger text-white"
+      href="{% url 'posts:post-delete' pk=post.pk %}"
+    >
+      Delete post
     </a>
     <hr>
   {% endif %}
