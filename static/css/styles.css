@@ -1,6 +1,165 @@
 body {
     margin-top: 20px;
-    background-image: url(https://cdn.pixabay.com/photo/2023/08/02/07/47/wasabi-8164637_1280.jpg);
+    background-image: url(https://bipbap.ru/wp-content/uploads/2017/06/1-7.jpg);
     background-size: cover;
-    color: red;
+    color: yellowgreen;
+}
+
+.dish-card {
+    opacity: 0.6;
+  position: relative;
+  background-color: #fffff1;
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9);
+}
+
+.dish-details {
+  color: red;
+}
+
+.actions {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.post-list {
+  margin-top: 20px;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #5b80b2;
+  opacity: 0.5;
+}
+
+.post-title {
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.post-title:hover {
+  text-decoration: underline;
+}
+
+.post-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-rating {
+  font-size: 14px;
+}
+
+.post-created-time {
+  font-size: 14px;
+  color: #a41515;
+}
+
+.post-user {
+  font-size: 14px;
+}
+
+.post-dish {
+  font-size: 14px;
+}
+
+.no-posts {
+  font-size: 18px;
+  color: #777;
+}
+
+.post-details {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-detail-item {
+  margin: 10px 0;
+}
+
+.post-detail-item strong {
+  font-weight: bold;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.comment-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.comment-item {
+  margin-top: 10px;
+}
+
+.sidebar-nav {
+  list-style: none;
+  padding: 10px;
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  color: yellowgreen;
+}
+
+.sidebar-nav li {
+  padding: 10px;
+  border-bottom: 1px solid #555;
+  text-align: left;
+}
+
+.sidebar-nav li a {
+  text-decoration: none;
+  color: greenyellow;
+  display: block;
+  padding: 5px;
+}
+
+.sidebar-nav li a:hover {
+  background-color: #417690;
+}
+
+.user-info {
+  background-color: #ff5722;
+  font-weight: bold;
+  padding: 15px;
+  text-align: center;
+}
+
+.admin-link {
+  background-color: #ff5722;
+  font-weight: bold;
 }
