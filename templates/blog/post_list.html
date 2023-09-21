@@ -2,26 +2,29 @@
 
 {% block content %}
   <h1>Posts</h1>
-  {% if post_list %}
-    <ul>
-      {% for post in post_list %}
-        <a
-            href="{% url 'posts:post-detail' post.pk %}"
-        >
-          {{ post.description|truncatewords:2 }}
-        </a>
-        Rating: {{ post.rating }}
-        Created time: {{ post.created_time }}
-        {% if post.user %}
-          User: {{ post.user.username }}
-        {% else %}
-          Unknown user
-        {% endif %}
-        Dish: {{ post.dish }}
-        <hr>
-      {% endfor %}
-    </ul>
-  {% else %}
-    There are not posts yet
-  {% endif %}
+  <div class="post-list">
+    {% if post_list %}
+      <ul class="list-group">
+        {% for post in post_list %}
+          <li class="list-group-item">
+            <a href="{% url 'posts:post-detail' post.pk %}" class="post-title">
+              {{ post.description|truncatewords:2 }}
+            </a>
+            <div class="post-info">
+              <span class="post-rating">Rating: {{ post.rating }}</span>
+              <span class="post-created-time">Created time: {{ post.created_time }}</span>
+              {% if post.user %}
+                <span class="post-user">User: {{ post.user.username }}</span>
+              {% else %}
+                <span class="post-user">Unknown user</span>
+              {% endif %}
+              <span class="post-dish">Dish: {{ post.dish }}</span>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="no-posts">There are no posts yet</p>
+    {% endif %}
+  </div>
 {% endblock %}

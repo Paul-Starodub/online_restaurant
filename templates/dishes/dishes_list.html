@@ -10,36 +10,40 @@
   {% if user.is_staff %}
     <br>
     <a
-        class="btn btn-light text-bg-warning float-lg-end"
+        class="btn btn-light text-bg-warning text-lg-end"
         href="{% url 'cuisine:dish-create' %}">Create
     </a>
     <div></div>
 
   {% endif %}
+  <hr>
+
   {% if dish_list %}
     <ul>
       {% for dish in dish_list %}
-        <li>
-          <div><a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a></div>
-          <br>
-          <div>Description: {{ dish.description }}</div>
-          <br>
-          <div>Price: {{ dish.price }}</div>
-          <br>
-          <div>Type of dish: {{ dish.dish_type }} </div>
-          <div class="card-footer text-lg-end">
+        <li class="border bg-light p-3 mb-3 dish-card">
+          <div class="dish-details">
+            <a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a>
+            <br>
+            Description: {{ dish.description }}
+            <br>
+            Price: {{ dish.price }}
+            <br>
+            Type of dish: {{ dish.dish_type }}
+          </div>
+          <div class="actions">
             <a class="btn btn-success"
                href="{% url 'cuisine:basket-add' dish.id %}">
               Add to basket
             </a>
           </div>
-          <br>
+
         </li>
-        <hr>
+
       {% endfor %}
     </ul>
   {% else %}
-    <h2>There no dishes yet</h2>
+    <h2>There are no dishes yet</h2>
     <br>
   {% endif %}
 {% endblock %}
