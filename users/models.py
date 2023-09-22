@@ -34,7 +34,7 @@ def validate_ukrainian_phone_number(value: str) -> None:
         )
 
 
-def validate_unique_phone_or_empty(value: int) -> None:
+def validate_unique_phone_or_empty(value: str) -> None:
     if value:
         if User.objects.filter(phone=value).exclude(phone="").exists():
             raise ValidationError("The number must be unique.")
@@ -45,7 +45,6 @@ def validate_unique_phone_or_empty(value: int) -> None:
 class User(AbstractUser):
     email = models.EmailField(_("email address"), unique=True)
     phone = PhoneNumberField(
-        unique=True,
         region="UA",
         blank=True,
         default="",
