@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
+{% load socialaccount %}
 
 {% block content %}
   <h1>Login</h1>
@@ -12,6 +13,11 @@
   <form method="post" action="{% url 'users:login' %}">
     {% csrf_token %}
     {{ form|crispy }}
+      You can authorize via:
+        <a href="{% provider_login_url 'github' %}">
+        <i class="fab fa-github fa-2x" style="color: #f7f7f7;"></i>
+    </a>
+    <hr>
       <input type="submit" value="Submit" class="btn btn-success">
   </form>
 

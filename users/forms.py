@@ -26,7 +26,7 @@ class CustomerCreationForm(UserCreationForm):
 
 
 class UserProfileForm(UserChangeForm):
-    phone = PhoneNumberField(region="UA")
+    phone = PhoneNumberField(region="UA", required=False)
 
     class Meta:
         model = User
