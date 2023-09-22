@@ -9,7 +9,7 @@ from users.models import EmailVerification, User
 
 
 class CustomerCreationForm(UserCreationForm):
-    phone = PhoneNumberField(region="UA")
+    phone = PhoneNumberField(region="UA", required=False)
 
     class Meta(UserCreationForm.Meta):
         model = User
