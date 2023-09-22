@@ -10,13 +10,14 @@
                 <form
                     action="{% url 'users:user-profile' user.pk %}"
                     method="post"
-                    enctype="multipart/form-data" >
+                    enctype="multipart/form-data"
+                >
                     {% csrf_token %}
                       {{ form.username|as_crispy_field }}
                       {{ form.email|as_crispy_field }}
                       {{ form.first_name|as_crispy_field }}
                       {{ form.last_name|as_crispy_field }}
-                      {{ form.phone|as_crispy_field }}
+                      {{ form.phone|as_crispy_field}}
                       {{ form.image|as_crispy_field }}
                       {% if form.instance.image %}
                           <img
