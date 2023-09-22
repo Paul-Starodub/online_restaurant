@@ -34,13 +34,25 @@ def validate_ukrainian_phone_number(value: str) -> None:
         )
 
 
+def validate_unique_phone_or_empty(value: int) -> None:
+    if value:
+        if User.objects.filter(phone=value).exclude(phone="").exists():
+            raise ValidationError("The number must be unique.")
+    else:
+        pass
+
+
 class User(AbstractUser):
     email = models.EmailField(_("email address"), unique=True)
     phone = PhoneNumberField(
         unique=True,
         region="UA",
         blank=True,
-        validators=[validate_ukrainian_phone_number],
+        default="",
+        validators=[
+            validate_ukrainian_phone_number,
+            validate_unique_phone_or_empty,
+        ],
     )
     image = models.ImageField(
         upload_to=user_image_file_path, null=True, blank=True
