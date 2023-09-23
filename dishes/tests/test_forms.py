@@ -23,7 +23,8 @@ class DishCustomizeFormTests(TestCase):
     def setUp(self) -> None:
         self.dish_type = DishType.objects.create(name="Main Dish")
         self.image_data = open(
-            "dishes/test_image/cake-31c4e877-290e-4e10-a947-79f7cfe1b204.jpg",
+            "dishes/tests/assets/images/cake-31c4e877-290e-4e10-a947"
+            "-79f7cfe1b204.jpg",
             "rb",
         ).read()
         self.image = SimpleUploadedFile(
