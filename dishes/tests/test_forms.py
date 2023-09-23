@@ -1,5 +1,8 @@
+from PIL import Image
+
 from django.test import TestCase
 from django.core.files.uploadedfile import SimpleUploadedFile
+import io
 
 from dishes.forms import NameSearchForm, DishCustomizeForm
 from dishes.models import DishType
@@ -22,13 +25,11 @@ class NameSearchFormTests(TestCase):
 class DishCustomizeFormTests(TestCase):
     def setUp(self) -> None:
         self.dish_type = DishType.objects.create(name="Main Dish")
-        self.image_data = open(
-            "dishes/tests/assets/images/cake-31c4e877-290e-4e10-a947"
-            "-79f7cfe1b204.jpg",
-            "rb",
-        ).read()
-        self.image = SimpleUploadedFile(
-            "test_image.jpg", self.image_data, content_type="image/jpeg"
+        image_stream = io.BytesIO()
+        image = Image.new("RGB", (100, 100), "white")
+        image.save(image_stream, format="JPEG")
+        self.image_file = SimpleUploadedFile(
+            "test_image.jpg", image_stream.getvalue()
         )
 
     def test_dish_customize_form(self) -> None:
@@ -36,9 +37,10 @@ class DishCustomizeFormTests(TestCase):
             "name": "Test Dish",
             "description": "Description",
             "price": 9.99,
-            "image": self.image,
+            "image": self.image_file,
             "dish_type": self.dish_type.id,
         }
+
         form = DishCustomizeForm(data=form_data, files=form_data)
 
         self.assertTrue(form.is_valid())
@@ -48,7 +50,7 @@ class DishCustomizeFormTests(TestCase):
             "name": "Test Dish",
             "description": "Description",
             "price": -1.99,  # Invalid price (negative)
-            "image": self.image,
+            "image": self.image_file,
             "dish_type": self.dish_type.id,
         }
         form = DishCustomizeForm(data=form_data)
