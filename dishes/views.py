@@ -1,3 +1,5 @@
+import os
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -28,6 +30,9 @@ class IndexView(LoginRequiredMixin, generic.TemplateView):
             self.request.session.get("num_visits", 0) + 1
         )
         context["num_visits"] = self.request.session.get("num_visits", 1)
+        context["count_dishes"] = Dish.objects.count()
+        context["count_dish_types"] = DishType.objects.count()
+        context["contact"] = os.getenv("CONTACT")
 
         return context
 
