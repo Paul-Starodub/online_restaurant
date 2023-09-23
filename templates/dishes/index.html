@@ -3,5 +3,16 @@
 {% block content %}
   <h1>Welcome</h1>
   <hr>
+{% with count=count_dishes %}
+  <h4>There {{ count }} dish{{ count|pluralize:",es" }}.</h4>
+  <hr>
+{% endwith %}
+  {% with count=count_dish_types %}
+  <h4>There {{ count }} dish type{{ count|pluralize}}.</h4>
+  <hr>
+{% endwith %}
+  <div style="height: 600px"></div>
+  You can contact the owner by phone: {{ contact }}
+  <hr>
   <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}</p>
 {% endblock %}
