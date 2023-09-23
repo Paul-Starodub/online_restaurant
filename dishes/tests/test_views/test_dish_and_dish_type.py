@@ -2,7 +2,7 @@ import io
 from PIL import Image
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth import get_user_model
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from dishes.forms import DishCustomizeForm
@@ -76,6 +76,7 @@ class PublicDishTypeAndDishTests(TestCase):
         self.assertNotEqual(response.status_code, 200)
 
 
+@override_settings(MEDIA_ROOT="/tmp/media")
 class PrivateDishTypeAndDishTests(TestCase):
     def setUp(self) -> None:
         image_stream = io.BytesIO()
