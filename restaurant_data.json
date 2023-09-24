@@ -1,0 +1,974 @@
+[
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 4,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 4,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 4,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 4,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 5,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 5,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 5,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 5,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add email address",
+    "content_type": 6,
+    "codename": "add_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change email address",
+    "content_type": 6,
+    "codename": "change_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete email address",
+    "content_type": 6,
+    "codename": "delete_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view email address",
+    "content_type": 6,
+    "codename": "view_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add email confirmation",
+    "content_type": 7,
+    "codename": "add_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change email confirmation",
+    "content_type": 7,
+    "codename": "change_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete email confirmation",
+    "content_type": 7,
+    "codename": "delete_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view email confirmation",
+    "content_type": 7,
+    "codename": "view_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add social account",
+    "content_type": 8,
+    "codename": "add_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change social account",
+    "content_type": 8,
+    "codename": "change_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete social account",
+    "content_type": 8,
+    "codename": "delete_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view social account",
+    "content_type": 8,
+    "codename": "view_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add social application",
+    "content_type": 9,
+    "codename": "add_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change social application",
+    "content_type": 9,
+    "codename": "change_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete social application",
+    "content_type": 9,
+    "codename": "delete_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view social application",
+    "content_type": 9,
+    "codename": "view_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add social application token",
+    "content_type": 10,
+    "codename": "add_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change social application token",
+    "content_type": 10,
+    "codename": "change_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete social application token",
+    "content_type": 10,
+    "codename": "delete_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view social application token",
+    "content_type": 10,
+    "codename": "view_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add basket",
+    "content_type": 11,
+    "codename": "add_basket"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change basket",
+    "content_type": 11,
+    "codename": "change_basket"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete basket",
+    "content_type": 11,
+    "codename": "delete_basket"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view basket",
+    "content_type": 11,
+    "codename": "view_basket"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add dish type",
+    "content_type": 12,
+    "codename": "add_dishtype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change dish type",
+    "content_type": 12,
+    "codename": "change_dishtype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete dish type",
+    "content_type": 12,
+    "codename": "delete_dishtype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view dish type",
+    "content_type": 12,
+    "codename": "view_dishtype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add dish",
+    "content_type": 13,
+    "codename": "add_dish"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change dish",
+    "content_type": 13,
+    "codename": "change_dish"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete dish",
+    "content_type": 13,
+    "codename": "delete_dish"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view dish",
+    "content_type": 13,
+    "codename": "view_dish"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 14,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 14,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 14,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 14,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add email verification",
+    "content_type": 15,
+    "codename": "add_emailverification"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change email verification",
+    "content_type": 15,
+    "codename": "change_emailverification"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete email verification",
+    "content_type": 15,
+    "codename": "delete_emailverification"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view email verification",
+    "content_type": 15,
+    "codename": "view_emailverification"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add commentary",
+    "content_type": 16,
+    "codename": "add_commentary"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change commentary",
+    "content_type": 16,
+    "codename": "change_commentary"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete commentary",
+    "content_type": 16,
+    "codename": "delete_commentary"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view commentary",
+    "content_type": 16,
+    "codename": "view_commentary"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 65,
+  "fields": {
+    "name": "Can add post",
+    "content_type": 17,
+    "codename": "add_post"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 66,
+  "fields": {
+    "name": "Can change post",
+    "content_type": 17,
+    "codename": "change_post"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 67,
+  "fields": {
+    "name": "Can delete post",
+    "content_type": 17,
+    "codename": "delete_post"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 68,
+  "fields": {
+    "name": "Can view post",
+    "content_type": 17,
+    "codename": "view_post"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "account",
+    "model": "emailaddress"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "account",
+    "model": "emailconfirmation"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialaccount"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialapp"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialtoken"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "dishes",
+    "model": "basket"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "dishes",
+    "model": "dishtype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "dishes",
+    "model": "dish"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "users",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "users",
+    "model": "emailverification"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "blog",
+    "model": "commentary"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 17,
+  "fields": {
+    "app_label": "blog",
+    "model": "post"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6so2fucrlytw7bnh8lo5lw3wqk1d68rl",
+  "fields": {
+    "session_data": ".eJxVjMsOgyAQRf-FdUMAEQeX3fcbyAyMlT4wEe2m6b9XExft9p5zz1sEXJcxrJXnkJPoRSNOvxthvHPZQbphuU4yTmWZM8ldkQet8jIlfpwP9y8wYh239wAEimyjjVKtNuQ8AQyEHG3U3jImbxJ5Bc5q54xyrht0C8wGVYJOb9GyPsMr17xU0evPFzhDPG0:1qkVqR:VZ54p43UuU1M0f822NwyPPo4emUn2IjMRQbEVXDLdQI",
+    "expire_date": "2023-10-08T20:36:47.111Z"
+  }
+},
+{
+  "model": "dishes.dishtype",
+  "pk": 1,
+  "fields": {
+    "name": "First dishes"
+  }
+},
+{
+  "model": "dishes.dishtype",
+  "pk": 2,
+  "fields": {
+    "name": "Second dishes"
+  }
+},
+{
+  "model": "dishes.dishtype",
+  "pk": 3,
+  "fields": {
+    "name": "Drinks"
+  }
+},
+{
+  "model": "dishes.dish",
+  "pk": 1,
+  "fields": {
+    "name": "Soup",
+    "description": "Description:\r\nOur restaurant offers a delightful selection of soups that are sure to tantalize your taste buds. Prepared with the finest ingredients and culinary expertise, our soups are a comforting and flavorful choice for any occasion.\r\n\r\nIngredients:\r\n\r\nChoice of broth (such as chicken, vegetable, or beef)\r\nFresh vegetables (including carrots, celery, and onions)\r\nSeasoned meats or seafood (options vary)\r\nAromatic herbs and spices (like parsley, bay leaves, and a blend of savory seasonings)\r\nOptional garnishes (such as croutons, sour cream, or a sprinkle of fresh herbs)\r\nPreparation:\r\nEach soup is crafted with care, starting with a rich and flavorful broth as the base. We combine fresh vegetables, select meats or seafood, and a medley of herbs and spices to create a harmonious blend of flavors. Our soups are simmered to perfection, allowing all the ingredients to meld together beautifully.",
+    "price": "12.99",
+    "image": "uploads/dishes/soup-25024ba0-413f-4322-a573-0aa5b28eac8c.jpg",
+    "dish_type": 1,
+    "likes": []
+  }
+},
+{
+  "model": "dishes.dish",
+  "pk": 2,
+  "fields": {
+    "name": "Caesar salad",
+    "description": "Description:\r\nIndulge in the classic flavors of our Caesar Salad, a timeless favorite that combines crisp romaine lettuce, savory croutons, and our signature Caesar dressing. Topped with Parmesan cheese and garnished with a zesty twist of lemon, this salad is a culinary masterpiece that never goes out of style.\r\n\r\nIngredients:\r\n\r\nFresh Romaine Lettuce\r\nCrunchy Croutons\r\nGrated Parmesan Cheese\r\nCreamy Caesar Dressing\r\nSqueeze of Fresh Lemon\r\nOptional Anchovies (available upon request)\r\nPreparation:\r\nOur Caesar Salad is meticulously prepared to perfection. We start with crisp, green Romaine lettuce leaves, carefully washing and chopping them to retain their natural freshness. The croutons are toasted to a golden brown, adding a delightful crunch to every bite.\r\n\r\nThe dressing, a harmonious blend of mayonnaise, garlic, Dijon mustard, and anchovies, is gently tossed with the lettuce, coating each leaf evenly. A generous sprinkle of grated Parmesan cheese adds a rich and nutty flavor to the salad.",
+    "price": "13.67",
+    "image": "uploads/dishes/caesar-salad-1491366f-179c-4dd2-96a0-ba717b0cf73f.jpg",
+    "dish_type": 2,
+    "likes": [
+      2
+    ]
+  }
+},
+{
+  "model": "dishes.dish",
+  "pk": 3,
+  "fields": {
+    "name": "Mojito",
+    "description": "Mojito is a classic Cuban cocktail known for its refreshing and invigorating qualities. Here's a description of a Mojito in English:\r\n\r\nA Mojito is a timeless and beloved cocktail that captures the essence of the Caribbean. This iconic drink is a symphony of flavors, combining the zesty freshness of lime, the subtle sweetness of sugar, the coolness of mint leaves, and the crispness of soda water. All these elements come together to create a harmonious and revitalizing beverage that's perfect for warm, sunny days.\r\n\r\nTo make a Mojito, start by muddling fresh mint leaves and lime juice with sugar in a glass. Add ice cubes and a generous pour of white rum, then top it off with sparkling soda water. The result is a vibrant and effervescent concoction with a delightful balance of sweet, sour, and herbal notes. It's often garnished with a sprig of fresh mint and a lime wedge to enhance its visual appeal.\r\n\r\nSipping on a Mojito is like taking a brief vacation to a tropical paradise. Its crisp and citrusy profile, coupled with the cooling sensation of mint, makes it a go-to choice for those seeking a revitalizing escape from the heat. Whether enjoyed poolside, at a beach bar, or in the comfort of your own home, a Mojito is a timeless classic that never goes out of style.",
+    "price": "10.89",
+    "image": "uploads/dishes/mojito-895d1cf4-ec5b-4dd4-a4e6-f7f31ddde5a5.jpg",
+    "dish_type": 3,
+    "likes": [
+      3
+    ]
+  }
+},
+{
+  "model": "dishes.basket",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "dish": 2,
+    "quantity": 1,
+    "created": "2023-09-24T20:30:42.173Z"
+  }
+},
+{
+  "model": "dishes.basket",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "dish": 2,
+    "quantity": 2,
+    "created": "2023-09-24T20:32:13.667Z"
+  }
+},
+{
+  "model": "dishes.basket",
+  "pk": 3,
+  "fields": {
+    "user": 2,
+    "dish": 1,
+    "quantity": 1,
+    "created": "2023-09-24T20:32:16.808Z"
+  }
+},
+{
+  "model": "dishes.basket",
+  "pk": 4,
+  "fields": {
+    "user": 3,
+    "dish": 3,
+    "quantity": 3,
+    "created": "2023-09-24T20:37:34.747Z"
+  }
+},
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$N3HmBeGxLotumE5rqWVLCk$/Ma/F6QFhXAVCg5GQLOnqv7VvGfW6azQhvzTg/p8Dys=",
+    "last_login": "2023-09-24T20:23:17.881Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-09-24T20:22:52.255Z",
+    "email": "admin@gmail.com",
+    "phone": "",
+    "image": "",
+    "is_verified_email": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$pS391rVESDVBr903c3nK6X$MbapjxRY+oo8GosBP6TY9PaGuH6tFiRLV9Qxe9YLUpg=",
+    "last_login": "2023-09-24T20:32:06.287Z",
+    "is_superuser": false,
+    "username": "Red",
+    "first_name": "",
+    "last_name": "Paul",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-24T20:31:48.016Z",
+    "email": "amorallex@gmail.com",
+    "phone": "+380934847244",
+    "image": "uploads/users/red-a5a1245a-ae43-4cb1-911c-1cd849fb6a50.jpg",
+    "is_verified_email": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$oq1kdHpro4aAz6yttXhw93$4BI7sU5Aba8shUa4+oShOXG4wDMZEzrYMU1j59yG9kg=",
+    "last_login": "2023-09-24T20:36:47.082Z",
+    "is_superuser": false,
+    "username": "Green",
+    "first_name": "Natali",
+    "last_name": "Severinova",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-24T20:36:34.316Z",
+    "email": "natalia.monika.niedzwiecka@gmail.com",
+    "phone": "+380976979776",
+    "image": "",
+    "is_verified_email": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.emailverification",
+  "pk": 1,
+  "fields": {
+    "code": "2b8150d2-c3b3-4773-b2e7-581edcb8c58c",
+    "user": 2,
+    "created": "2023-09-24T20:31:48.263Z",
+    "expiration": "2023-09-26T20:31:48.262Z"
+  }
+},
+{
+  "model": "users.emailverification",
+  "pk": 2,
+  "fields": {
+    "code": "594ab5e4-d3cc-4d60-b6e8-ae6af78671fa",
+    "user": 3,
+    "created": "2023-09-24T20:36:34.530Z",
+    "expiration": "2023-09-26T20:36:34.530Z"
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 1,
+  "fields": {
+    "description": "It was delicious!",
+    "rating": 5,
+    "created_time": "2023-09-24T20:34:21.475Z",
+    "dish": 2,
+    "user": 2
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 2,
+  "fields": {
+    "description": "Is it usual water?",
+    "rating": 2,
+    "created_time": "2023-09-24T20:34:56.320Z",
+    "dish": 3,
+    "user": 2
+  }
+},
+{
+  "model": "blog.commentary",
+  "pk": 1,
+  "fields": {
+    "user": 3,
+    "post": 2,
+    "created_time": "2023-09-24T20:37:25.988Z",
+    "content": "Are you disappointed?"
+  }
+}
+]
