@@ -3,13 +3,28 @@ from datetime import timedelta
 
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.utils.timezone import now
+from django.core.exceptions import ValidationError
+
 from phonenumber_field.formfields import PhoneNumberField
 
-from users.models import EmailVerification, User
+from users.models import (
+    EmailVerification,
+    User,
+)
+
+
+def validate_unique_phone_or_empty(value: str) -> None:
+    if value:
+        if User.objects.filter(phone=value).exclude(phone="").exists():
+            raise ValidationError("The number must be unique.")
+    else:
+        pass
 
 
 class CustomerCreationForm(UserCreationForm):
-    phone = PhoneNumberField(region="UA")
+    phone = PhoneNumberField(
+        region="UA", validators=[validate_unique_phone_or_empty]
+    )
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -26,7 +41,10 @@ class CustomerCreationForm(UserCreationForm):
 
 
 class UserProfileForm(UserChangeForm):
-    phone = PhoneNumberField(region="UA", required=False)
+    phone = PhoneNumberField(
+        region="UA",
+        required=False,
+    )
 
     class Meta:
         model = User
