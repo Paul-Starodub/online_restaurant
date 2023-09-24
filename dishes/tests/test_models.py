@@ -47,7 +47,9 @@ class BasketQuerySetTests(TestCase):
             dish_type=self.dish_type,
         )
         self.user = get_user_model().objects.create_user(
-            username="testuser", password="testpassword"
+            username="testuser",
+            password="testpassword",
+            email="aduuuu@gmail.com",
         )
         self.basket1 = Basket.objects.create(
             user=self.user, dish=self.dish1, quantity=2

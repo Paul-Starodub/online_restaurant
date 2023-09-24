@@ -30,6 +30,8 @@ class PrivateIndexTestCase(TestCase):
         self.assertEqual(response1.status_code, 200)
         self.assertTemplateUsed(response2, "dishes/index.html")
         self.assertEqual(response2.context["num_visits"], 2)
-        self.assertEqual(response1.context["count_dishes"], 0)
-        self.assertEqual(response1.context["count_dish_types"], 0)
-        self.assertEqual(response1.context["contact"], os.getenv("CONTACT"))
+        self.assertEqual(response1.context_data["count_dishes"], 0)
+        self.assertEqual(response1.context_data["count_dish_types"], 0)
+        self.assertEqual(
+            response1.context_data["contact"], os.getenv("CONTACT")
+        )

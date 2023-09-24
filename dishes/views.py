@@ -47,7 +47,6 @@ class DishListView(LoginRequiredMixin, generic.ListView):
         context = super().get_context_data()
         name = self.request.GET.get("name", "")
         context["search_form"] = NameSearchForm(initial={"name": name})
-        context["user"] = self.request.user
 
         return context
 
@@ -65,12 +64,6 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
     queryset = Dish.objects.prefetch_related(
         "posts__commentaries", "likes"
     ).select_related("dish_type")
-
-    def get_context_data(self, **kwargs: dict) -> dict:
-        context = super().get_context_data(**kwargs)
-        context["user"] = self.request.user
-
-        return context
 
 
 @method_decorator(decorators, name="dispatch")

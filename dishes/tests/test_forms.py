@@ -47,12 +47,12 @@ class DishCustomizeFormTests(TestCase):
 
     def test_dish_customize_form_with_invalid_price(self) -> None:
         form_data = {
-            "name": "Test Dish",
+            "name": "Test Dish#",
             "description": "Description",
-            "price": -1.99,  # Invalid price (negative)
+            "price": -1.99,
             "image": self.image_file,
             "dish_type": self.dish_type.id,
         }
-        form = DishCustomizeForm(data=form_data)
+        form = DishCustomizeForm(data=form_data, files=form_data)
 
         self.assertFalse(form.is_valid())
