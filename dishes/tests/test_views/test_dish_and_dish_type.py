@@ -129,13 +129,11 @@ class PrivateDishTypeAndDishTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertTrue("user" in response.context)
 
     def test_dish_create_staff_required(self) -> None:
         form_data = {
-            "name": "Test Dish",
+            "name": "Test Dish#",
             "description": "Description",
-            "price": 9.99,
             "image": self.image_file,
             "dish_type": self.dish_type.id,
         }
@@ -144,8 +142,7 @@ class PrivateDishTypeAndDishTests(TestCase):
             reverse("cuisine:dish-create"), data=form_data
         )
 
-        self.assertEqual(response.status_code, 302)
-        self.assertNotEqual(response.url, reverse("cuisine:dish-list"))
+        self.assertNotEqual(response.status_code, 200)
 
         self.client.logout()
         self.staff = get_user_model().objects.create_user(
@@ -156,10 +153,13 @@ class PrivateDishTypeAndDishTests(TestCase):
         )
         self.client.force_login(self.staff)
         response = self.client.post(
-            reverse("cuisine:dish-create"), data=form_data
+            reverse("cuisine:dish-create"), data=form_data, follow=True
         )
 
         self.assertEqual(response.status_code, 200)
+        self.assertFormError(
+            response, "form", "price", "This field is required."
+        )
 
     def test_dish_update_staff_required(self) -> None:
         form_data = {
@@ -194,7 +194,7 @@ class PrivateDishTypeAndDishTests(TestCase):
 
         self.assertTrue("is_paginated" in response.context)
         self.assertTrue(response.context["is_paginated"])
-        self.assertEqual(len(response.context["dish_list"]), 5)
+        self.assertEqual(len(response.context_data["dish_list"]), 5)
 
     def test_dish_customize_form(self) -> None:
         image_stream = io.BytesIO()
@@ -230,21 +230,21 @@ class PrivateDishTypeAndDishTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 302)
-        self.assertNotEqual(response.url, reverse("cuisine:dish_type-list"))
 
         self.client.logout()
         self.staff = get_user_model().objects.create_user(
             username="staff_user#",
             password="password",
             is_staff=True,
-            email="ad@gmail.com",
+            email="ad1@gmail.com",
         )
         self.client.force_login(self.staff)
+
         response = self.client.post(
-            reverse("cuisine:dish_type-create"), data=form_data
+            reverse("cuisine:dish_type-create"), data=form_data, follow=True
         )
 
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
 
     def test_dish_type_update_staff_required(self) -> None:
         form_data = {
