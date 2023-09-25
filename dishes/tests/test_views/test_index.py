@@ -15,6 +15,8 @@ class PublicIndexTestCase(TestCase):
 
 
 class PrivateIndexTestCase(TestCase):
+    fixtures = ["restaurant_data.json"]
+
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
             email="Test email",
@@ -30,8 +32,8 @@ class PrivateIndexTestCase(TestCase):
         self.assertEqual(response1.status_code, 200)
         self.assertTemplateUsed(response2, "dishes/index.html")
         self.assertEqual(response2.context["num_visits"], 2)
-        self.assertEqual(response1.context_data["count_dishes"], 0)
-        self.assertEqual(response1.context_data["count_dish_types"], 0)
+        self.assertEqual(response1.context_data["count_dishes"], 3)
+        self.assertEqual(response1.context_data["count_dish_types"], 3)
         self.assertEqual(
             response1.context_data["contact"], os.getenv("CONTACT")
         )
