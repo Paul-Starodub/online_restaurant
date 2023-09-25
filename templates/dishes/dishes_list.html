@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load cache %}
 
 {% block content %}
   <h1>Dishes:</h1>
@@ -18,7 +19,9 @@
   {% endif %}
   <hr>
 
+  {% cache 30 object_list %}
   {% if dish_list %}
+
     <ul>
       {% for dish in dish_list %}
         <li class="border bg-light p-3 mb-3 dish-card">
@@ -46,4 +49,5 @@
     <h2>There are no dishes yet</h2>
     <br>
   {% endif %}
+  {% endcache %}
 {% endblock %}

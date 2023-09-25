@@ -1,5 +1,4 @@
 from django.urls import path
-from django.views.decorators.cache import cache_page
 
 from blog.views import PostCreateView
 from dishes.views import (
@@ -21,7 +20,7 @@ from dishes.views import (
 
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
-    path("dishes/", cache_page(30)(DishListView.as_view()), name="dish-list"),
+    path("dishes/", DishListView.as_view(), name="dish-list"),
     path("dishes/<int:pk>/", DishDetailView.as_view(), name="dish-detail"),
     path(
         "dishes/<int:pk>/like/",
