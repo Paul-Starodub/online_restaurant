@@ -25,9 +25,6 @@ class PostCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.dish = get_object_or_404(Dish, pk=self.kwargs["pk"])
         return super().form_valid(form)
 
-    def get_success_url(self) -> str:
-        return reverse_lazy("posts:post-detail", kwargs={"pk": self.object.pk})
-
 
 class PostDetailView(LoginRequiredMixin, generic.DetailView):
     queryset = Post.objects.select_related(
@@ -56,7 +53,9 @@ class CommentaryCreateView(LoginRequiredMixin, generic.CreateView):
         return super().form_valid(form)
 
     def get_success_url(self) -> str:
-        return reverse_lazy("posts:post-detail", args=[self.kwargs["pk"]])
+        return reverse_lazy(
+            "posts:post-detail", kwargs={"pk": self.kwargs["pk"]}
+        )
 
 
 class CommentaryDetailView(LoginRequiredMixin, generic.DetailView):
