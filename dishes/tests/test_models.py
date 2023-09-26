@@ -12,14 +12,11 @@ class DishTypesTests(TestCase):
 
 
 class DishesTests(TestCase):
+    fixtures = ["restaurant_data.json"]
+
     def setUp(self) -> None:
-        self.dish_type = DishType.objects.create(name="Test Type")
-        self.dish = Dish.objects.create(
-            name="Test Dish",
-            description="Test Description",
-            price=Decimal("10.00"),
-            dish_type=self.dish_type,
-        )
+        self.dish_type = DishType.objects.last()
+        self.dish = Dish.objects.last()
 
     def test_dish_str(self) -> None:
         self.assertEqual(str(self.dish), self.dish.name)
@@ -38,12 +35,14 @@ class BasketQuerySetTests(TestCase):
             name="Dish 1",
             description="Description 1",
             price=Decimal("10.00"),
+            image="",
             dish_type=self.dish_type,
         )
         self.dish2 = Dish.objects.create(
             name="Dish 2",
             description="Description 2",
             price=Decimal("20.00"),
+            image="",
             dish_type=self.dish_type,
         )
         self.user = get_user_model().objects.create_user(
