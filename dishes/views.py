@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
+from django.core.cache import cache
 
 from dishes.forms import DishCustomizeForm, NameSearchForm
 from dishes.models import Basket, Dish, DishType
@@ -47,6 +48,12 @@ class DishListView(LoginRequiredMixin, generic.ListView):
         context = super().get_context_data()
         name = self.request.GET.get("name", "")
         context["search_form"] = NameSearchForm(initial={"name": name})
+        dish_types = cache.get("dish_types")  # example of using cache
+        if not dish_types:
+            context["dish_types"] = DishType.objects.prefetch_related("dishes")
+            cache.set("dish_types", context["dish_types"], 30)
+        else:
+            context[dish_types] = dish_types
 
         return context
 
