@@ -1,21 +1,21 @@
-import uuid
-from datetime import timedelta
-
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-from django.utils.timezone import now
 from django.core.exceptions import ValidationError
+from django.contrib.auth import get_user_model
 
 from phonenumber_field.formfields import PhoneNumberField
 
-from users.models import (
-    EmailVerification,
-    User,
-)
+from users.models import User
+from users.tasks import send_email_verification
 
 
 def validate_unique_phone_or_empty(value: str) -> None:
     if value:
-        if User.objects.filter(phone=value).exclude(phone="").exists():
+        if (
+            get_user_model()
+            .objects.filter(phone=value)
+            .exclude(phone="")
+            .exists()
+        ):
             raise ValidationError("The number must be unique.")
     else:
         pass
@@ -32,11 +32,7 @@ class CustomerCreationForm(UserCreationForm):
 
     def save(self, commit=True) -> User:
         user = super().save(commit=True)
-        expiration = now() + timedelta(hours=48)
-        record = EmailVerification.objects.create(
-            code=uuid.uuid4(), user=user, expiration=expiration
-        )
-        record.send_verification_email()
+        send_email_verification.delay(user.id)
         return user
 
 
