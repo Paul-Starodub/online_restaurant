@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+
+from django.urls import reverse_lazy
+
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -64,6 +67,7 @@ INSTALLED_APPS = [
     "dishes",
     "users",
     "blog",
+    "orders",
 ]
 
 MIDDLEWARE = [
@@ -144,7 +148,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "users.User"
 
-LOGIN_REDIRECT_URL = "/cuisine/"
+LOGIN_REDIRECT_URL = reverse_lazy("cuisine:index")
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
