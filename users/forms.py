@@ -17,8 +17,6 @@ def validate_unique_phone_or_empty(value: str) -> None:
             .exists()
         ):
             raise ValidationError("The number must be unique.")
-    else:
-        pass
 
 
 class CustomerCreationForm(UserCreationForm):
@@ -40,6 +38,7 @@ class UserProfileForm(UserChangeForm):
     phone = PhoneNumberField(
         region="UA",
         required=False,
+        validators=[validate_unique_phone_or_empty],
     )
 
     class Meta:
