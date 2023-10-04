@@ -24,6 +24,7 @@ urlpatterns = [
     path("cuisine/", include("dishes.urls", namespace="cuisine")),
     path("users/", include("users.urls", namespace="users")),
     path("posts/", include("blog.urls", namespace="posts")),
+    path("orders/", include("orders.urls", namespace="orders")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("__debug__/", include("debug_toolbar.urls")),
     path("accounts/", include("allauth.urls")),
