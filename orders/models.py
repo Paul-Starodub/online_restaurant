@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
+from phonenumber_field.modelfields import PhoneNumberField
+
+from users.models import validate_ukrainian_phone_number
+
 
 class Order(models.Model):
     STATUSES = (
@@ -12,6 +16,12 @@ class Order(models.Model):
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=64)
     email = models.EmailField()
+    phone = PhoneNumberField(
+        region="UA",
+        validators=[
+            validate_ukrainian_phone_number,
+        ],
+    )
     address = models.CharField(max_length=256)
     basket_history = models.JSONField(default=dict)
     created = models.DateTimeField(auto_now_add=True)
