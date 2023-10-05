@@ -38,7 +38,6 @@ class UserProfileForm(UserChangeForm):
     phone = PhoneNumberField(
         region="UA",
         required=False,
-        validators=[validate_unique_phone_or_empty],
     )
 
     class Meta:
@@ -51,3 +50,17 @@ class UserProfileForm(UserChangeForm):
             "phone",
             "image",
         )
+
+    def clean_phone(self) -> str:
+        phone = self.cleaned_data.get("phone")
+        if phone:
+            users_with_same_phone = (
+                get_user_model()
+                .objects.exclude(pk=self.instance.pk)
+                .filter(phone=phone)
+            )
+            if users_with_same_phone.exists():
+                raise ValidationError(
+                    "This phone number is already registered."
+                )
+        return phone
