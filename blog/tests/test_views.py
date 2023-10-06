@@ -1,8 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
 
-from blog.models import Post, Commentary
+from blog.models import Commentary, Post
 from dishes.models import Dish
 
 

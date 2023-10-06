@@ -1,10 +1,10 @@
-from PIL import Image
-
-from django.test import TestCase
-from django.core.files.uploadedfile import SimpleUploadedFile
 import io
 
-from dishes.forms import NameSearchForm, DishCustomizeForm
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import TestCase
+from PIL import Image
+
+from dishes.forms import DishCustomizeForm, NameSearchForm
 from dishes.models import DishType
 
 

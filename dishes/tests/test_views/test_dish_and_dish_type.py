@@ -1,12 +1,13 @@
 import io
-from PIL import Image
-from django.core.files.uploadedfile import SimpleUploadedFile
+
 from django.contrib.auth import get_user_model
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, override_settings
 from django.urls import reverse
+from PIL import Image
 
 from dishes.forms import DishCustomizeForm
-from dishes.models import DishType, Dish
+from dishes.models import Dish, DishType
 
 DISHES_URL = reverse("cuisine:dish-list")
 DISH_TYPES_URL = reverse("cuisine:dish_type-list")

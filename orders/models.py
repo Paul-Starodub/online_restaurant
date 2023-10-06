@@ -1,6 +1,5 @@
-from django.db import models
 from django.contrib.auth import get_user_model
-
+from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
 from users.models import validate_ukrainian_phone_number

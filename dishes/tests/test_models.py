@@ -1,8 +1,10 @@
-from django.test import TestCase
-from django.contrib.auth import get_user_model
-from django.urls import reverse
 from decimal import Decimal
-from dishes.models import DishType, Dish, Basket
+
+from django.contrib.auth import get_user_model
+from django.test import TestCase
+from django.urls import reverse
+
+from dishes.models import Basket, Dish, DishType
 
 
 class DishTypesTests(TestCase):
