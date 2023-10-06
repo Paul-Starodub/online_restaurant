@@ -2,7 +2,6 @@ import uuid
 from datetime import timedelta
 
 from celery import shared_task
-
 from django.contrib.auth import get_user_model
 from django.utils.timezone import now
 

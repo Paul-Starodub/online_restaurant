@@ -1,8 +1,7 @@
 from django import forms
+from phonenumber_field.formfields import PhoneNumberField
 
 from orders.models import Order
-
-from phonenumber_field.formfields import PhoneNumberField
 
 
 class OrderForm(forms.ModelForm):

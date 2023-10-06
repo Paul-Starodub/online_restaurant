@@ -1,7 +1,8 @@
-from django.test import TestCase
 from django.contrib.admin.sites import AdminSite
-from dishes.admin import DishAdmin, BasketAdmin
-from dishes.models import Dish, Basket
+from django.test import TestCase
+
+from dishes.admin import BasketAdmin, DishAdmin
+from dishes.models import Basket, Dish
 
 
 class DishAdminTestCase(TestCase):
