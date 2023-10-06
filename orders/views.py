@@ -2,9 +2,10 @@ import stripe
 
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, HttpRequest
+from django.http import HttpResponseRedirect, HttpRequest, HttpResponse
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 from http import HTTPStatus
 
@@ -64,3 +65,14 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form: OrderForm) -> HttpResponseRedirect:
         form.instance.initiator = self.request.user
         return super().form_valid(form)
+
+
+@csrf_exempt
+def stripe_webhook_view(request: HttpRequest) -> HttpResponse:
+    payload = request.body
+
+    # For now, you only need to print out the webhook payload so you can see
+    # the structure.
+    print(payload)
+
+    return HttpResponse(status=200)
