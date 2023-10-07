@@ -38,6 +38,9 @@ class Dish(models.Model):
         validators=[MinValueValidator(limit_value=0)],
     )
     image = models.ImageField(null=False, upload_to=dish_image_file_path)
+    stripe_product_price_id = models.CharField(
+        max_length=128, null=True, blank=True
+    )
     dish_type = models.ForeignKey(
         DishType, on_delete=models.CASCADE, related_name="dishes"
     )
