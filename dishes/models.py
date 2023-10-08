@@ -71,7 +71,7 @@ class Dish(models.Model):
         update_fields: list = None,
     ) -> None:
         if not self.stripe_product_price_id:
-            stripe_product_price = self.create_stripe_product_price()  # TODO
+            stripe_product_price = self.create_stripe_product_price()
             self.stripe_product_price_id = stripe_product_price["id"]
         super().save(
             force_insert=False,
