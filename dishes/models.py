@@ -135,3 +135,12 @@ class Basket(models.Model):
     @property
     def sum(self) -> Decimal:
         return self.dish.price * self.quantity
+
+    def de_json(self) -> dict:
+        basket_item = {
+            "dish_name": self.dish.name,
+            "quantity": self.quantity,
+            "price": float(self.dish.price),
+            "sum": float(self.sum),
+        }
+        return basket_item
