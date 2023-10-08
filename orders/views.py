@@ -3,6 +3,7 @@ import stripe
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpRequest, HttpResponse
+from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views.decorators.csrf import csrf_exempt
@@ -10,6 +11,7 @@ from django.views.generic.base import TemplateView
 from http import HTTPStatus
 
 from orders.forms import OrderForm
+from orders.models import Order
 from dishes.models import Basket
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -92,7 +94,7 @@ def stripe_webhook_view(request: HttpRequest) -> HttpResponse:
     return HttpResponse(status=200)
 
 
-def fulfill_order(session):
-    # TODO: fill me in
+def fulfill_order(session) -> None:
     order_id = int(session.metadata.order_id)
-    # print("Fulfilling order")
+    order = get_object_or_404(Order, id=order_id)
+    order.update_after_payment()
