@@ -19,7 +19,7 @@
                         {% for purchased_item in object.basket_history.purchased_items %}
                             <tr>
                                 <th scope="row">
-                                    {{ purchased_item.product_name }}
+                                    {{ purchased_item.dish_name }}
                                 </th>
                                 <td>{{ purchased_item.quantity }}</td>
                                 <td>{{ purchased_item.price|floatformat:2 }} UAN.</td>
