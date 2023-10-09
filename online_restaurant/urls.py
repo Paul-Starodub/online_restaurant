@@ -24,11 +24,10 @@ from orders.views import stripe_webhook_view
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("cuisine/", include("dishes.urls", namespace="cuisine")),
+    path("accounts/", include("allauth.urls")),
     path("users/", include("users.urls", namespace="users")),
     path("posts/", include("blog.urls", namespace="posts")),
     path("orders/", include("orders.urls", namespace="orders")),
-    path("accounts/", include("django.contrib.auth.urls")),
-    path("authentication/", include("allauth.urls")),
     path("webhook/stripe/", stripe_webhook_view, name="stripe-webhook"),
     path("__debug__/", include("debug_toolbar.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

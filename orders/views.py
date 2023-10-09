@@ -1,8 +1,15 @@
 import stripe
 
 from django.conf import settings
+from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, HttpRequest, HttpResponse
+from django.http import (
+    HttpResponseRedirect,
+    HttpRequest,
+    HttpResponse,
+    HttpResponseBadRequest,
+)
+from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views.decorators.csrf import csrf_exempt
@@ -10,12 +17,35 @@ from django.views.generic.base import TemplateView
 from http import HTTPStatus
 
 from orders.forms import OrderForm
+from orders.models import Order
+from dishes.models import Basket
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 class SuccessTemplateView(TemplateView):
     template_name = "orders/success.html"
+
+    def get(self, request, *args, **kwargs) -> HttpResponse:
+        session_id = request.GET.get("session_id")
+
+        if session_id:
+            # Retrieve information from Stripe session metadata
+            session = stripe.checkout.Session.retrieve(session_id)
+            user_id = session.metadata.get("user_id")
+
+            if user_id:
+                try:
+                    user = get_user_model().objects.get(id=user_id)
+                    user.backend = (
+                        "allauth.account.auth_backends.AuthenticationBackend"
+                    )
+                    login(request, user)
+                except get_user_model().DoesNotExist:
+                    return HttpResponseBadRequest(
+                        "User does not exist", status=HTTPStatus.BAD_REQUEST
+                    )
+        return super().get(request, *args, **kwargs)
 
 
 class CanceledTemplateView(TemplateView):
@@ -31,17 +61,18 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
         self, request: HttpRequest, *args: tuple, **kwargs: dict
     ) -> HttpResponseRedirect:
         super().post(request, *args, **kwargs)
+        baskets = Basket.objects.filter(user=self.request.user)
         checkout_session = stripe.checkout.Session.create(
-            line_items=[
-                {
-                    "price": "price_1NyF8MEh4Z78jXQXCoQOq8WX",
-                    "quantity": 1,
-                },
-            ],
+            line_items=baskets.stripe_products(),
+            metadata={
+                "order_id": self.object.id,
+                "user_id": self.request.user.id,  # save user
+            },
             mode="payment",
             success_url="{}{}".format(
                 settings.DOMAIN_NAME, reverse("orders:order-success")
-            ),
+            )
+            + "?session_id={CHECKOUT_SESSION_ID}",
             cancel_url="{}{}".format(
                 settings.DOMAIN_NAME, reverse("orders:order-canceled")
             ),
@@ -70,9 +101,31 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
 @csrf_exempt
 def stripe_webhook_view(request: HttpRequest) -> HttpResponse:
     payload = request.body
+    sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
+    event = None
 
-    # For now, you only need to print out the webhook payload so you can see
-    # the structure.
-    print(payload)
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
+        )
+    except ValueError as e:
+        print(e)
+        return HttpResponse(status=HTTPStatus.BAD_REQUEST)
+    except stripe.error.SignatureVerificationError as e:
+        print(e)
+        return HttpResponse(status=HTTPStatus.BAD_REQUEST)
 
+    # Handle the checkout.session.completed event
+    if event["type"] == "checkout.session.completed":
+        session = event["data"]["object"]
+
+        fulfill_order(session)
+
+    # Passed signature verification
     return HttpResponse(status=200)
+
+
+def fulfill_order(session) -> None:
+    order_id = int(session.metadata.order_id)
+    order = get_object_or_404(Order, id=order_id)
+    order.update_after_payment()

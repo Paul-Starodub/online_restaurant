@@ -4,6 +4,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 from users.models import validate_ukrainian_phone_number
 
+from dishes.models import Basket
+
 
 class Order(models.Model):
     STATUSES = (
@@ -31,3 +33,13 @@ class Order(models.Model):
 
     def __str__(self) -> str:
         return f"Order #{self.id}. {self.first_name} {self.last_name}"
+
+    def update_after_payment(self) -> None:
+        baskets = Basket.objects.filter(user=self.initiator)
+        self.status = self.STATUSES[1][0]
+        self.basket_history = {
+            "purchased_items": [basket.de_json() for basket in baskets],
+            "total_sum": float(baskets.total_sum()),
+        }
+        baskets.delete()
+        self.save()

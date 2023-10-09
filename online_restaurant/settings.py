@@ -32,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-DOMAIN_NAME = "http://localhost:8000"
+DOMAIN_NAME = os.getenv("DOMAIN_NAME")
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -193,14 +193,8 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
-
 SOCIALACCOUNT_PROVIDERS = {
     "github": {
-        "SCOPE": [
-            "user",
-            "repo",
-            "read:org",
-        ],
         "APP": {
             "client_id": os.getenv("CLIENT_ID"),
             "secret": os.getenv("SECRET"),
@@ -216,3 +210,4 @@ CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 # Stripe
 STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
+STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")
