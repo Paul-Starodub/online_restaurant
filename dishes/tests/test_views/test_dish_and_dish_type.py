@@ -22,6 +22,7 @@ class PublicDishTypeAndDishTests(TestCase):
             price="20.87",
             image="image.jpg",
             dish_type=self.dish_type,
+            stripe_product_price_id="789yohkb",
         )
 
     def test_dish_list_login_required(self) -> None:
@@ -94,6 +95,7 @@ class PrivateDishTypeAndDishTests(TestCase):
             price="20.87",
             image=self.image_file,
             dish_type=self.dish_type,
+            stripe_product_price_id="789yohkb",
         )
 
         number_of_dishes = 12
@@ -107,6 +109,7 @@ class PrivateDishTypeAndDishTests(TestCase):
                 price=f"{num}.27",
                 image=self.image_file,
                 dish_type=dish_type,
+                stripe_product_price_id="789yohkb",
             )
 
         self.queryset1 = DishType.objects.all()
@@ -210,6 +213,7 @@ class PrivateDishTypeAndDishTests(TestCase):
             "price": 9.99,
             "image": image_file,
             "dish_type": self.dish_type.id,
+            "stripe_product_price_id": "789yohkb",
         }
         form = DishCustomizeForm(data=form_data, files=form_data)
 
