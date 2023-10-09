@@ -193,14 +193,8 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
-
 SOCIALACCOUNT_PROVIDERS = {
     "github": {
-        "SCOPE": [
-            "user",
-            "repo",
-            "read:org",
-        ],
         "APP": {
             "client_id": os.getenv("CLIENT_ID"),
             "secret": os.getenv("SECRET"),
