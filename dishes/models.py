@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-import stripe
 import os
 import uuid
 
+import stripe
 from _decimal import Decimal
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -11,7 +11,6 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.db.models import F, Sum
 from django.urls import reverse
-
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
