@@ -25,7 +25,7 @@
                                 <td>{{ order.created|naturaltime }}</td>
                                 <td>{{ order.basket_history.total_sum|floatformat:2 }} UAN.</td>
                                 <td>
-                                    <a href="#">View</a>
+                                    <a href="{% url 'orders:order-detail' pk=order.pk %}">View</a>
                                 </td>
                             </tr>
                         {% endfor %}
