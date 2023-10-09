@@ -68,4 +68,3 @@ class UserRegistrationViewTestCase(TestCase):
             "Incorrect phone number. Example: +380971234567.",
             html=True,
         )
-
