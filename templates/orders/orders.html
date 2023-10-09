@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 
 {% block content %}
     <section>
@@ -21,10 +22,10 @@
                             <tr>
                                 <th scope="row">{{ order.id }}</th>
                                 <td>{{ order.get_status_display }}</td>
-                                <td>{{ order.created }}</td>
+                                <td>{{ order.created|naturaltime }}</td>
                                 <td>{{ order.basket_history.total_sum|floatformat:2 }} UAN.</td>
                                 <td>
-                                    <a href="{% url 'orders:order' order.id %}">View</a>
+                                    <a href="#">View</a>
                                 </td>
                             </tr>
                         {% endfor %}

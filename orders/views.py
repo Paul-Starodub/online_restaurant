@@ -1,5 +1,6 @@
 import stripe
 
+from django.db.models import QuerySet
 from django.conf import settings
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -11,6 +12,7 @@ from django.http import (
 )
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
+from django.views import generic
 from django.views.generic.edit import CreateView
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
@@ -50,6 +52,15 @@ class SuccessTemplateView(TemplateView):
 
 class CanceledTemplateView(TemplateView):
     template_name = "orders/canceled.html"
+
+
+class OrderListView(generic.ListView):
+    template_name = "orders/orders.html"
+    ordering = ("-created",)
+
+    def get_queryset(self) -> QuerySet:
+        queryset = Order.objects.select_related("initiator")
+        return queryset.filter(initiator=self.request.user)
 
 
 class OrderCreateView(LoginRequiredMixin, CreateView):

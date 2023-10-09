@@ -11,6 +11,7 @@
   <li><a href="{% url "cuisine:dish-list" %}">All dishes</a></li>
   <li><a href="{% url "cuisine:dish_type-list" %}">All types of available food</a></li>
   <li><a href="{% url "posts:post-list" %}">Forum</a></li>
+  <li><a href="{% url "orders:order-list" %}">Orders</a></li>
   {% if user.is_superuser or user.is_staff %}
     <li class="admin-link"><a href="{% url 'admin:index' %}">Admin panel</a></li>
   {% endif %}
