@@ -1,31 +1,31 @@
-import stripe
+from http import HTTPStatus
 
-from django.db.models import QuerySet
+import stripe
 from django.conf import settings
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import QuerySet
 from django.http import (
-    HttpResponseRedirect,
     HttpRequest,
     HttpResponse,
     HttpResponseBadRequest,
+    HttpResponseRedirect,
 )
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views import generic
-from django.views.generic.edit import CreateView
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
-from http import HTTPStatus
+from django.views.generic.edit import CreateView
 
+from dishes.models import Basket
 from orders.forms import OrderForm
 from orders.models import Order
-from dishes.models import Basket
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-class SuccessTemplateView(TemplateView):
+class SuccessTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "orders/success.html"
 
     def get(self, request, *args, **kwargs) -> HttpResponse:
@@ -50,7 +50,7 @@ class SuccessTemplateView(TemplateView):
         return super().get(request, *args, **kwargs)
 
 
-class CanceledTemplateView(TemplateView):
+class CanceledTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "orders/canceled.html"
 
 
@@ -61,6 +61,11 @@ class OrderListView(generic.ListView):
     def get_queryset(self) -> QuerySet:
         queryset = Order.objects.select_related("initiator")
         return queryset.filter(initiator=self.request.user)
+
+
+class OrderDetailView(LoginRequiredMixin, generic.DetailView):
+    template_name = "orders/order.html"
+    model = Order
 
 
 class OrderCreateView(LoginRequiredMixin, CreateView):
