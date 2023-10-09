@@ -17,9 +17,7 @@ urlpatterns = [
     path(
         "profile/<int:pk>", CustomerProfileView.as_view(), name="user-profile"
     ),
-    path(
-        "logout/", LogoutView.as_view(), name="logout"
-    ),
+    path("logout/", LogoutView.as_view(), name="logout"),
     path(
         "verify/<str:email>/<uuid:code>/",
         EmailVerificationView.as_view(),
