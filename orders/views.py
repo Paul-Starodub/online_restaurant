@@ -11,7 +11,7 @@ from django.http import (
     HttpResponseBadRequest,
     HttpResponseRedirect,
 )
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
@@ -76,26 +76,30 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     def post(
         self, request: HttpRequest, *args: tuple, **kwargs: dict
     ) -> HttpResponseRedirect:
-        super().post(request, *args, **kwargs)
-        baskets = Basket.objects.filter(user=self.request.user)
-        checkout_session = stripe.checkout.Session.create(
-            line_items=baskets.stripe_products(),
-            metadata={
-                "order_id": self.object.id,
-                "user_id": self.request.user.id,  # save user
-            },
-            mode="payment",
-            success_url="{}{}".format(
-                settings.DOMAIN_NAME, reverse("orders:order-success")
+        form = self.get_form()
+        if form.is_valid():
+            super().post(request, *args, **kwargs)
+            baskets = Basket.objects.filter(user=self.request.user)
+            checkout_session = stripe.checkout.Session.create(
+                line_items=baskets.stripe_products(),
+                metadata={
+                    "order_id": self.object.id,
+                    "user_id": self.request.user.id,  # save user
+                },
+                mode="payment",
+                success_url="{}{}".format(
+                    settings.DOMAIN_NAME, reverse("orders:order-success")
+                )
+                + "?session_id={CHECKOUT_SESSION_ID}",
+                cancel_url="{}{}".format(
+                    settings.DOMAIN_NAME, reverse("orders:order-canceled")
+                ),
             )
-            + "?session_id={CHECKOUT_SESSION_ID}",
-            cancel_url="{}{}".format(
-                settings.DOMAIN_NAME, reverse("orders:order-canceled")
-            ),
-        )
-        return HttpResponseRedirect(
-            checkout_session.url, status=HTTPStatus.SEE_OTHER
-        )
+            return HttpResponseRedirect(
+                checkout_session.url, status=HTTPStatus.SEE_OTHER
+            )
+        else:
+            return render(request, self.template_name, {"form": form})
 
     def get_initial(self) -> dict:
         initial = super().get_initial()
