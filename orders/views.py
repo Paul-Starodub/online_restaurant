@@ -25,7 +25,7 @@ from orders.models import Order
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-class SuccessTemplateView(LoginRequiredMixin, TemplateView):
+class SuccessTemplateView(TemplateView):
     template_name = "orders/success.html"
 
     def get(self, request, *args, **kwargs) -> HttpResponse:
@@ -54,7 +54,7 @@ class CanceledTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "orders/canceled.html"
 
 
-class OrderListView(generic.ListView):
+class OrderListView(LoginRequiredMixin, generic.ListView):
     template_name = "orders/orders.html"
     ordering = ("-created",)
 
