@@ -86,6 +86,7 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
                     "order_id": self.object.id,
                     "user_id": self.request.user.id,  # save user
                 },
+                customer_email=self.request.user.email,
                 mode="payment",
                 success_url="{}{}".format(
                     settings.DOMAIN_NAME, reverse("orders:order-success")
