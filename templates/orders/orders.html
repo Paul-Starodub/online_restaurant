@@ -23,7 +23,7 @@
                                 <th scope="row">{{ order.id }}</th>
                                 <td>{{ order.get_status_display }}</td>
                                 <td>{{ order.created|naturaltime }}</td>
-                                <td>{{ order.basket_history.total_sum|floatformat:2 }} UAN.</td>
+                                <td>{{ order.basket_history.total_sum|floatformat:2 }} usd.</td>
                                 <td>
                                     <a href="{% url 'orders:order-detail' pk=order.pk %}">View</a>
                                 </td>

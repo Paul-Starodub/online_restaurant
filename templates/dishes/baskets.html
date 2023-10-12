@@ -15,7 +15,7 @@
                             <input name="basketID" type="number" class="form-control"
                                    value="{{ basket.quantity }}" min="0">
                         </div>
-                        <div class="col-lg-4">{{ basket.sum|floatformat:2 }} UAH.</div>
+                        <div class="col-lg-4">{{ basket.sum|floatformat:2 }} usd.</div>
                         <div class="col-lg-4">
                             <a href="{% url 'cuisine:basket-remove' basket.id %}">
                                 <i class="fas fa-trash"></i>
@@ -29,7 +29,7 @@
     <div class="card mb-3">
         <div class="card-footer">
             <p class="float-left">All</p>
-            <h4 class="float-right">{{ baskets.total_sum|floatformat:2  }} UAH.</h4>
+            <h4 class="float-right">{{ baskets.total_sum|floatformat:2  }} usd.</h4>
         </div>
     </div>
     <a class="btn btn-success btn-lg float-right" href="{% url 'orders:order-create' %}">

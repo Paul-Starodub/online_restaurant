@@ -22,13 +22,13 @@
                                     {{ purchased_item.dish_name }}
                                 </th>
                                 <td>{{ purchased_item.quantity }}</td>
-                                <td>{{ purchased_item.price|floatformat:2 }} UAN.</td>
-                                <td>{{ purchased_item.sum|floatformat:2 }} UAN.</td>
+                                <td>{{ purchased_item.price|floatformat:2 }} usd.</td>
+                                <td>{{ purchased_item.sum|floatformat:2 }} usd.</td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
-                    <p class="float-right h4 mt-3">Total {{ object.basket_history.total_sum|floatformat:2 }} UAN.</p>
+                    <p class="float-right h4 mt-3">Total {{ object.basket_history.total_sum|floatformat:2 }} usd.</p>
                 </div>
             </div>
         </div>
