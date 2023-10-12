@@ -1,5 +1,109 @@
 [
 {
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2023-10-12T07:32:42.266Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "First dishes",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2023-10-12T07:33:00.506Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "2",
+    "object_repr": "Second dishes",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2023-10-12T07:33:07.314Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "3",
+    "object_repr": "Drinks",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2023-10-12T07:35:47.922Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "Salad",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2023-10-12T07:38:13.379Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "Soup",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2023-10-12T07:38:59.043Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "1",
+    "object_repr": "Salad",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2023-10-12T07:39:04.072Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "2",
+    "object_repr": "Soup",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2023-10-12T07:41:15.151Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "3",
+    "object_repr": "Lemonade",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -612,6 +716,42 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 69,
+  "fields": {
+    "name": "Can add order",
+    "content_type": 18,
+    "codename": "add_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 70,
+  "fields": {
+    "name": "Can change order",
+    "content_type": 18,
+    "codename": "change_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 71,
+  "fields": {
+    "name": "Can delete order",
+    "content_type": 18,
+    "codename": "delete_order"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 72,
+  "fields": {
+    "name": "Can view order",
+    "content_type": 18,
+    "codename": "view_order"
+  }
+},
+{
   "model": "contenttypes.contenttype",
   "pk": 1,
   "fields": {
@@ -748,11 +888,19 @@
   }
 },
 {
-  "model": "sessions.session",
-  "pk": "6so2fucrlytw7bnh8lo5lw3wqk1d68rl",
+  "model": "contenttypes.contenttype",
+  "pk": 18,
   "fields": {
-    "session_data": ".eJxVjMsOgyAQRf-FdUMAEQeX3fcbyAyMlT4wEe2m6b9XExft9p5zz1sEXJcxrJXnkJPoRSNOvxthvHPZQbphuU4yTmWZM8ldkQet8jIlfpwP9y8wYh239wAEimyjjVKtNuQ8AQyEHG3U3jImbxJ5Bc5q54xyrht0C8wGVYJOb9GyPsMr17xU0evPFzhDPG0:1qkVqR:VZ54p43UuU1M0f822NwyPPo4emUn2IjMRQbEVXDLdQI",
-    "expire_date": "2023-10-08T20:36:47.111Z"
+    "app_label": "orders",
+    "model": "order"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "d3ogwp6dm5mdkok3ap2uqa5c8927ohaf",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln-xWYp6XMGy-td4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRFaHH63TDlB7cd0D212yzz3NZlQrkr8qBdjjPx83q4fwc19fqtDQzKstceyCjwhVwGqwgZVAmBNON5AJ8NJeOyAQPZlcDOcbLWeUTx_gDN7Tex:1qqqB3:X5W4-2mfSypSRvweB6P614hKnnEkP-xLVgiyxaGS7Sc",
+    "expire_date": "2023-10-26T07:32:13.341Z"
   }
 },
 {
@@ -780,23 +928,27 @@
   "model": "dishes.dish",
   "pk": 1,
   "fields": {
-    "name": "Soup",
-    "description": "Description:\r\nOur restaurant offers a delightful selection of soups that are sure to tantalize your taste buds. Prepared with the finest ingredients and culinary expertise, our soups are a comforting and flavorful choice for any occasion.\r\n\r\nIngredients:\r\n\r\nChoice of broth (such as chicken, vegetable, or beef)\r\nFresh vegetables (including carrots, celery, and onions)\r\nSeasoned meats or seafood (options vary)\r\nAromatic herbs and spices (like parsley, bay leaves, and a blend of savory seasonings)\r\nOptional garnishes (such as croutons, sour cream, or a sprinkle of fresh herbs)\r\nPreparation:\r\nEach soup is crafted with care, starting with a rich and flavorful broth as the base. We combine fresh vegetables, select meats or seafood, and a medley of herbs and spices to create a harmonious blend of flavors. Our soups are simmered to perfection, allowing all the ingredients to meld together beautifully.",
+    "name": "Salad",
+    "description": "Enjoy the vibrant flavors of summer with our Summer Harvest Salad, a refreshing and wholesome choice from our restaurant's menu. This delightful salad is a feast for the senses, featuring a medley of farm-fresh ingredients that capture the essence of the season.",
     "price": "12.99",
-    "image": "uploads/dishes/soup-25024ba0-413f-4322-a573-0aa5b28eac8c.jpg",
-    "dish_type": 1,
-    "likes": []
+    "image": "uploads/dishes/salad-2f724a4b-14dd-42d0-8b1b-7c5e65e08998.jpeg",
+    "stripe_product_price_id": "price_1O0JQtEh4Z78jXQXUZ0RqH2D",
+    "dish_type": 2,
+    "likes": [
+      2
+    ]
   }
 },
 {
   "model": "dishes.dish",
   "pk": 2,
   "fields": {
-    "name": "Caesar salad",
-    "description": "Description:\r\nIndulge in the classic flavors of our Caesar Salad, a timeless favorite that combines crisp romaine lettuce, savory croutons, and our signature Caesar dressing. Topped with Parmesan cheese and garnished with a zesty twist of lemon, this salad is a culinary masterpiece that never goes out of style.\r\n\r\nIngredients:\r\n\r\nFresh Romaine Lettuce\r\nCrunchy Croutons\r\nGrated Parmesan Cheese\r\nCreamy Caesar Dressing\r\nSqueeze of Fresh Lemon\r\nOptional Anchovies (available upon request)\r\nPreparation:\r\nOur Caesar Salad is meticulously prepared to perfection. We start with crisp, green Romaine lettuce leaves, carefully washing and chopping them to retain their natural freshness. The croutons are toasted to a golden brown, adding a delightful crunch to every bite.\r\n\r\nThe dressing, a harmonious blend of mayonnaise, garlic, Dijon mustard, and anchovies, is gently tossed with the lettuce, coating each leaf evenly. A generous sprinkle of grated Parmesan cheese adds a rich and nutty flavor to the salad.",
-    "price": "13.67",
-    "image": "uploads/dishes/caesar-salad-1491366f-179c-4dd2-96a0-ba717b0cf73f.jpg",
-    "dish_type": 2,
+    "name": "Soup",
+    "description": "Indulge in the rich and earthy flavors of our Creamy Wild Mushroom Soup. Crafted from a medley of hand-picked forest mushrooms, this velvety delight is a symphony of tastes and textures. Slow-simmered to perfection with a hint of aromatic herbs and garlic, it's a heartwarming bowl of comfort. Topped with a delicate drizzle of truffle oil and garnished with fresh chives, it's a culinary masterpiece that will transport your taste buds to a sylvan paradise. Pair it with a crusty artisan bread for a satisfying and memorable dining experience.",
+    "price": "7.25",
+    "image": "uploads/dishes/soup-45260e4a-ed26-4ba2-80b6-12b77180d217.jpg",
+    "stripe_product_price_id": "price_1O0JTFEh4Z78jXQXPitKZdgl",
+    "dish_type": 1,
     "likes": [
       2
     ]
@@ -806,71 +958,32 @@
   "model": "dishes.dish",
   "pk": 3,
   "fields": {
-    "name": "Mojito",
-    "description": "Mojito is a classic Cuban cocktail known for its refreshing and invigorating qualities. Here's a description of a Mojito in English:\r\n\r\nA Mojito is a timeless and beloved cocktail that captures the essence of the Caribbean. This iconic drink is a symphony of flavors, combining the zesty freshness of lime, the subtle sweetness of sugar, the coolness of mint leaves, and the crispness of soda water. All these elements come together to create a harmonious and revitalizing beverage that's perfect for warm, sunny days.\r\n\r\nTo make a Mojito, start by muddling fresh mint leaves and lime juice with sugar in a glass. Add ice cubes and a generous pour of white rum, then top it off with sparkling soda water. The result is a vibrant and effervescent concoction with a delightful balance of sweet, sour, and herbal notes. It's often garnished with a sprig of fresh mint and a lime wedge to enhance its visual appeal.\r\n\r\nSipping on a Mojito is like taking a brief vacation to a tropical paradise. Its crisp and citrusy profile, coupled with the cooling sensation of mint, makes it a go-to choice for those seeking a revitalizing escape from the heat. Whether enjoyed poolside, at a beach bar, or in the comfort of your own home, a Mojito is a timeless classic that never goes out of style.",
-    "price": "10.89",
-    "image": "uploads/dishes/mojito-895d1cf4-ec5b-4dd4-a4e6-f7f31ddde5a5.jpg",
+    "name": "Lemonade",
+    "description": "Our classic lemonade is a thirst-quenching delight that offers a perfect balance of sweet and tangy flavors. Made with freshly squeezed lemons and a touch of sweetness, it's a timeless favorite that's sure to brighten your day. Served over ice and garnished with a slice of lemon, it's the ideal companion to your meal or a fantastic refresher on its own.",
+    "price": "6.77",
+    "image": "uploads/dishes/lemonade-75143aec-2e4f-448b-9eba-5542bc084652.jpeg",
+    "stripe_product_price_id": "price_1O0JWAEh4Z78jXQXfPFi9LNH",
     "dish_type": 3,
     "likes": [
-      3
+      1
     ]
   }
 },
 {
-  "model": "dishes.basket",
-  "pk": 1,
-  "fields": {
-    "user": 1,
-    "dish": 2,
-    "quantity": 1,
-    "created": "2023-09-24T20:30:42.173Z"
-  }
-},
-{
-  "model": "dishes.basket",
-  "pk": 2,
-  "fields": {
-    "user": 2,
-    "dish": 2,
-    "quantity": 2,
-    "created": "2023-09-24T20:32:13.667Z"
-  }
-},
-{
-  "model": "dishes.basket",
-  "pk": 3,
-  "fields": {
-    "user": 2,
-    "dish": 1,
-    "quantity": 1,
-    "created": "2023-09-24T20:32:16.808Z"
-  }
-},
-{
-  "model": "dishes.basket",
-  "pk": 4,
-  "fields": {
-    "user": 3,
-    "dish": 3,
-    "quantity": 3,
-    "created": "2023-09-24T20:37:34.747Z"
-  }
-},
-{
   "model": "users.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$600000$N3HmBeGxLotumE5rqWVLCk$/Ma/F6QFhXAVCg5GQLOnqv7VvGfW6azQhvzTg/p8Dys=",
-    "last_login": "2023-09-24T20:23:17.881Z",
+    "password": "pbkdf2_sha256$600000$QRhhwMdyZ2qqknUe0yN9Xc$98FP/fUEJ3aHWJG/1rkshbcnOahEnvrpYYf3Ko7lGKQ=",
+    "last_login": "2023-10-12T07:46:06.595Z",
     "is_superuser": true,
     "username": "admin",
-    "first_name": "",
-    "last_name": "",
+    "first_name": "Admin",
+    "last_name": "Our",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2023-09-24T20:22:52.255Z",
-    "email": "admin@gmail.com",
-    "phone": "",
+    "date_joined": "2023-10-12T07:31:53.771Z",
+    "email": "amorallex@gmail.com",
+    "phone": "+380934847213",
     "image": "",
     "is_verified_email": false,
     "groups": [],
@@ -881,19 +994,19 @@
   "model": "users.user",
   "pk": 2,
   "fields": {
-    "password": "pbkdf2_sha256$600000$pS391rVESDVBr903c3nK6X$MbapjxRY+oo8GosBP6TY9PaGuH6tFiRLV9Qxe9YLUpg=",
-    "last_login": "2023-09-24T20:32:06.287Z",
+    "password": "pbkdf2_sha256$600000$XTKaEygfNO59fCaQrZp757$JzGxfxbM3I9Gp5AU9IoN863I/MqMiw7tKo79iH1Hn84=",
+    "last_login": "2023-10-12T07:50:07.390Z",
     "is_superuser": false,
-    "username": "Red",
-    "first_name": "",
-    "last_name": "Paul",
+    "username": "red",
+    "first_name": "Red",
+    "last_name": "Last",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2023-09-24T20:31:48.016Z",
-    "email": "amorallex@gmail.com",
-    "phone": "+380934847244",
-    "image": "uploads/users/red-a5a1245a-ae43-4cb1-911c-1cd849fb6a50.jpg",
-    "is_verified_email": true,
+    "date_joined": "2023-10-12T07:47:47.631Z",
+    "email": "nwatalia.monika.niedzwiecka@gmail.com",
+    "phone": "+380934847231",
+    "image": "uploads/users/red-7b7fddd9-6a15-48b4-a5ae-af5490513fb5.jpg",
+    "is_verified_email": false,
     "groups": [],
     "user_permissions": []
   }
@@ -902,17 +1015,17 @@
   "model": "users.user",
   "pk": 3,
   "fields": {
-    "password": "pbkdf2_sha256$600000$oq1kdHpro4aAz6yttXhw93$4BI7sU5Aba8shUa4+oShOXG4wDMZEzrYMU1j59yG9kg=",
-    "last_login": "2023-09-24T20:36:47.082Z",
+    "password": "pbkdf2_sha256$600000$PduuH8QOC68D9i07qCI7qE$2Ic+CbSlgIURa2azuGu413qvMhjJsQQPhmgcLgXwwdM=",
+    "last_login": "2023-10-12T07:54:29.333Z",
     "is_superuser": false,
-    "username": "Green",
-    "first_name": "Natali",
-    "last_name": "Severinova",
+    "username": "green",
+    "first_name": "",
+    "last_name": "",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2023-09-24T20:36:34.316Z",
-    "email": "natalia.monika.niedzwiecka@gmail.com",
-    "phone": "+380976979776",
+    "date_joined": "2023-10-12T07:53:00.418Z",
+    "email": "hnatalia.monika.niedzwiecka@gmail.com",
+    "phone": "+380934847273",
     "image": "",
     "is_verified_email": false,
     "groups": [],
@@ -920,44 +1033,13 @@
   }
 },
 {
-  "model": "users.emailverification",
-  "pk": 1,
-  "fields": {
-    "code": "2b8150d2-c3b3-4773-b2e7-581edcb8c58c",
-    "user": 2,
-    "created": "2023-09-24T20:31:48.263Z",
-    "expiration": "2023-09-26T20:31:48.262Z"
-  }
-},
-{
-  "model": "users.emailverification",
-  "pk": 2,
-  "fields": {
-    "code": "594ab5e4-d3cc-4d60-b6e8-ae6af78671fa",
-    "user": 3,
-    "created": "2023-09-24T20:36:34.530Z",
-    "expiration": "2023-09-26T20:36:34.530Z"
-  }
-},
-{
   "model": "blog.post",
   "pk": 1,
   "fields": {
-    "description": "It was delicious!",
+    "description": "It was delicious!!!",
     "rating": 5,
-    "created_time": "2023-09-24T20:34:21.475Z",
-    "dish": 2,
-    "user": 2
-  }
-},
-{
-  "model": "blog.post",
-  "pk": 2,
-  "fields": {
-    "description": "Is it usual water?",
-    "rating": 2,
-    "created_time": "2023-09-24T20:34:56.320Z",
-    "dish": 3,
+    "created_time": "2023-10-12T07:50:52.609Z",
+    "dish": 1,
     "user": 2
   }
 },
@@ -965,10 +1047,107 @@
   "model": "blog.commentary",
   "pk": 1,
   "fields": {
+    "user": 2,
+    "post": 1,
+    "created_time": "2023-10-12T07:52:00.856Z",
+    "content": "Agree))))))"
+  }
+},
+{
+  "model": "blog.commentary",
+  "pk": 2,
+  "fields": {
     "user": 3,
-    "post": 2,
-    "created_time": "2023-09-24T20:37:25.988Z",
-    "content": "Are you disappointed?"
+    "post": 1,
+    "created_time": "2023-10-12T07:55:09.897Z",
+    "content": "Why do you think so?"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 2,
+  "fields": {
+    "first_name": "Admin",
+    "last_name": "Our",
+    "email": "amorallex@gmail.com",
+    "phone": "+380934847213",
+    "address": "Lviv Franko 56",
+    "basket_history": {
+      "total_sum": 6.77,
+      "purchased_items": [
+        {
+          "sum": 6.77,
+          "price": 6.77,
+          "quantity": 1,
+          "dish_name": "Lemonade"
+        }
+      ]
+    },
+    "created": "2023-10-12T07:45:46.660Z",
+    "status": 1,
+    "initiator": 1
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 3,
+  "fields": {
+    "first_name": "Red",
+    "last_name": "Last",
+    "email": "nwatalia.monika.niedzwiecka@gmail.com",
+    "phone": "+380934847231",
+    "address": "Kyiv Stusa 24",
+    "basket_history": {
+      "total_sum": 61.34,
+      "purchased_items": [
+        {
+          "sum": 12.99,
+          "price": 12.99,
+          "quantity": 1,
+          "dish_name": "Salad"
+        },
+        {
+          "sum": 14.5,
+          "price": 7.25,
+          "quantity": 2,
+          "dish_name": "Soup"
+        },
+        {
+          "sum": 33.85,
+          "price": 6.77,
+          "quantity": 5,
+          "dish_name": "Lemonade"
+        }
+      ]
+    },
+    "created": "2023-10-12T07:49:44.658Z",
+    "status": 1,
+    "initiator": 2
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 4,
+  "fields": {
+    "first_name": "PAVLO",
+    "last_name": "Old",
+    "email": "amworallex@gmail.com",
+    "phone": "+380934847289",
+    "address": "Володимира Великого 47а",
+    "basket_history": {
+      "total_sum": 38.97,
+      "purchased_items": [
+        {
+          "sum": 38.97,
+          "price": 12.99,
+          "quantity": 3,
+          "dish_name": "Salad"
+        }
+      ]
+    },
+    "created": "2023-10-12T07:54:09.664Z",
+    "status": 1,
+    "initiator": 3
   }
 }
 ]
