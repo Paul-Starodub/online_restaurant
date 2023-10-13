@@ -88,11 +88,11 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
                 },
                 customer_email=self.request.user.email,
                 mode="payment",
-                success_url="{}{}".format(
+                success_url="https://{}{}".format(
                     settings.DOMAIN_NAME, reverse("orders:order-success")
                 )
                 + "?session_id={CHECKOUT_SESSION_ID}",
-                cancel_url="{}{}".format(
+                cancel_url="https://{}{}".format(
                     settings.DOMAIN_NAME, reverse("orders:order-canceled")
                 ),
             )
