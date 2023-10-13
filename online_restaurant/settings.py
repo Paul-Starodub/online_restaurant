@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.environ.get("DEBUG", "") != "False"
 
 ALLOWED_HOSTS = [
-    "online-resturant.onrender.com",
+    "online-resturant.onrender-isaa.com",
 ]
 
 DOMAIN_NAME = os.getenv("DOMAIN_NAME")
