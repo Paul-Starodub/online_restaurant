@@ -2,6 +2,7 @@
 # exit on error
 set -o errexit
 
+curl -L https://github.com/stripe/stripe-cli/releases/latest/download/stripe-cli-darwin-amd64.tar.gz | tar xz -C /usr/local/bin/
 pip install -r requirements.txt
 
 python manage.py collectstatic --no-input
