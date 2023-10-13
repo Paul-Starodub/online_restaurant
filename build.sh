@@ -6,4 +6,4 @@ pip install -r requirements.txt
 
 python manage.py collectstatic --no-input
 python manage.py migrate
-celery --app tasks worker --loglevel info --concurrency 4
+celery -A online_restaurant --loglevel info --concurrency 4
