@@ -30,7 +30,9 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "") != "False"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "online-resturant.onrender.com",
+]
 
 DOMAIN_NAME = os.getenv("DOMAIN_NAME")
 
