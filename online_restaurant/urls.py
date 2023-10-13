@@ -23,7 +23,7 @@ from orders.views import stripe_webhook_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("cuisine/", include("dishes.urls", namespace="cuisine")),
+    path("", include("dishes.urls", namespace="cuisine")),
     path("accounts/", include("allauth.urls")),
     path("users/", include("users.urls", namespace="users")),
     path("posts/", include("blog.urls", namespace="posts")),
