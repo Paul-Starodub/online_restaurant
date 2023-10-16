@@ -32,7 +32,7 @@ DEBUG = os.environ.get("DEBUG", "") != "False"
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
-    "online-restauraunt.onrender.com",
+    "online-restaurant.onrender.com",
     "0.0.0.0",
 ]
 
