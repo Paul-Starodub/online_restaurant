@@ -50,4 +50,3 @@ urllib3==2.0.5
 vine==5.0.0
 wcwidth==0.2.6
 whitenoise==6.6.0
-stripe-cli==1.8.0
