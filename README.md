@@ -5,7 +5,7 @@ An online restaurant where you can view food and order it, paying its cost using
 
 ## Check it out!
 
-[online_restaurant deployed to Render](https://online-restaurant-w5dz.onrender.com/)
+[online_restaurant deployed to Render](https://online-restaurant-menu.onrender.com/)
   
 
   ## Installation
