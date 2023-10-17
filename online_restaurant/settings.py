@@ -183,6 +183,9 @@ STATIC_ROOT = "staticfiles/"
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
 
+DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropBoxStorage"
+DROPBOX_OAUTH2_TOKEN = os.environ.get("DROPBOX_ACCESS_TOKEN")
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
